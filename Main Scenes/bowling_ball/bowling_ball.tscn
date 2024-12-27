@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwvl3fycobgck"]
+
+[ext_resource type="Script" path="res://Main Scenes/bowling_ball/bowling_ball.gd" id="1_2faiv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4yfcb"]
+
+[node name="BowlingBall" type="RigidBody2D"]
+gravity_scale = 0.0
+linear_velocity = Vector2(200, 0)
+linear_damp = 4.0
+angular_velocity = 0.0174533
+angular_damp = 2.0
+script = ExtResource("1_2faiv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4yfcb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="DebugLine" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 50)
+width = 2.0
