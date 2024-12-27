@@ -14,10 +14,6 @@ config/name="Beginner-Game-Jam-Project"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
-[autoload]
-
-Events="*res://Global/Events.gd"
-
 [layer_names]
 
 2d_physics/layer_1="Walls"
