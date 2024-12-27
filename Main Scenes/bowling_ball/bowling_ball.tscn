@@ -16,7 +16,6 @@ script = ExtResource("1_2faiv")
 shape = SubResource("CircleShape2D_4yfcb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-6, -8.25)
 
 [node name="DebugLine" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 0, 50)
