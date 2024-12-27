@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://df2118ff0ei5x"]
+
+[ext_resource type="Script" path="res://System Managers/turn_manager.gd" id="1_ltxk2"]
+
+[node name="TurnManager" type="Node"]
+script = ExtResource("1_ltxk2")
+
+[node name="EnemyTurnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="EnemyTurnTimer" to="." method="_on_enemy_turn_timer_timeout"]
