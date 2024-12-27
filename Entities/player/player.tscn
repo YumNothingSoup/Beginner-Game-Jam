@@ -1,0 +1,161 @@
+[gd_scene load_steps=17 format=3 uid="uid://dvu67lgff14pj"]
+
+[ext_resource type="Texture2D" uid="uid://gmfl80oovw3d" path="res://Entities/player/animations/Prototype_Character.png" id="1_4w1qw"]
+[ext_resource type="Script" path="res://Entities/player/player.gd" id="1_ydwdm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sutav"]
+atlas = ExtResource("1_4w1qw")
+region = Rect2(0, 320, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ata7a"]
+atlas = ExtResource("1_4w1qw")
+region = Rect2(32, 320, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdxjc"]
+atlas = ExtResource("1_4w1qw")
+region = Rect2(64, 320, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtyph"]
+atlas = ExtResource("1_4w1qw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flt6r"]
+atlas = ExtResource("1_4w1qw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndicv"]
+atlas = ExtResource("1_4w1qw")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_feouu"]
+atlas = ExtResource("1_4w1qw")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5id2"]
+atlas = ExtResource("1_4w1qw")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nny13"]
+atlas = ExtResource("1_4w1qw")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4vbqw"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"bowl",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sutav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ata7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdxjc")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtyph")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flt6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndicv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_feouu")
+}],
+"loop": true,
+"name": &"idle forwad",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5id2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nny13")
+}],
+"loop": true,
+"name": &"idleb",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vjb5u"]
+size = Vector2(8, 7)
+
+[sub_resource type="Animation" id="Animation_oxgpu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_b535r"]
+resource_name = "scene_transition"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j66ya"]
+_data = {
+"RESET": SubResource("Animation_oxgpu"),
+"scene_transition": SubResource("Animation_b535r")
+}
+
+[node name="player" type="CharacterBody2D"]
+scale = Vector2(4, 4)
+collision_layer = 2
+script = ExtResource("1_ydwdm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4vbqw")
+animation = &"idleb"
+autoplay = "idleb"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_vjb5u")
+
+[node name="transition" type="Node2D" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="transition"]
+offset_left = -72.0
+offset_top = -40.0
+offset_right = 73.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="transition"]
+libraries = {
+"": SubResource("AnimationLibrary_j66ya")
+}
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
