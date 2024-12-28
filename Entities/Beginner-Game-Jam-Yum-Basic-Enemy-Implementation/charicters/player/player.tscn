@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://dvu67lgff14pj"]
+[gd_scene load_steps=17 format=3 uid="uid://dvu67lgff14pj"]
 
-[ext_resource type="Texture2D" uid="uid://gmfl80oovw3d" path="res://Entities/player/animations/Prototype_Character.png" id="1_4w1qw"]
-[ext_resource type="Script" path="res://Entities/player/player.gd" id="1_ydwdm"]
+[ext_resource type="Texture2D" uid="uid://gmfl80oovw3d" path="res://charicters/player/animations/Prototype_Character.png" id="1_4w1qw"]
+[ext_resource type="Script" path="res://charicters/player/player.gd" id="1_ydwdm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sutav"]
 atlas = ExtResource("1_4w1qw")
@@ -90,22 +90,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vjb5u"]
-size = Vector2(9.25, 13.875)
-
-[sub_resource type="Animation" id="Animation_oxgpu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
-}
+size = Vector2(8, 7)
 
 [sub_resource type="Animation" id="Animation_b535r"]
 resource_name = "scene_transition"
@@ -123,19 +108,29 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_oxgpu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j66ya"]
 _data = {
 "RESET": SubResource("Animation_oxgpu"),
 "scene_transition": SubResource("Animation_b535r")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7qstm"]
-radius = 6.5
-
 [node name="player" type="CharacterBody2D"]
 scale = Vector2(4, 4)
-collision_layer = 2
-collision_mask = 0
 script = ExtResource("1_ydwdm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -144,8 +139,11 @@ animation = &"idleb"
 autoplay = "idleb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.125, 0.4375)
+position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_vjb5u")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.4, 1.4)
 
 [node name="transition" type="Node2D" parent="."]
 visible = false
@@ -162,13 +160,4 @@ libraries = {
 "": SubResource("AnimationLibrary_j66ya")
 }
 
-[node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 16
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("CircleShape2D_7qstm")
-
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
-[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
