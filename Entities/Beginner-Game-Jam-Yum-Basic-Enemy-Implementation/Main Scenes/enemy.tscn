@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://bnhmd4i7ebnn6"]
+
+[ext_resource type="Script" path="res://Main Scenes/enemy.gd" id="1_7xn3k"]
+[ext_resource type="Texture2D" uid="uid://cugarg5setih8" path="res://enemy-looking-down.png" id="2_2gxx8"]
+[ext_resource type="Texture2D" uid="uid://dhp78k7yo7jfx" path="res://enemy-looking-left.png" id="3_205b2"]
+[ext_resource type="Texture2D" uid="uid://cry6ssvo3evek" path="res://enemy-looking-right.png" id="4_usivi"]
+[ext_resource type="Texture2D" uid="uid://dwv5wv1x6p7mt" path="res://enemy-looking-up.png" id="5_vieci"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wt7mw"]
+radius = 28.0
+height = 80.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k7aoo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2gxx8")
+}],
+"loop": true,
+"name": &"look_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_205b2")
+}],
+"loop": true,
+"name": &"look_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_usivi")
+}],
+"loop": true,
+"name": &"look_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_vieci")
+}],
+"loop": true,
+"name": &"look_up",
+"speed": 5.0
+}]
+
+[node name="enemy" type="RigidBody2D"]
+position = Vector2(431, 245)
+gravity_scale = 0.0
+script = ExtResource("1_7xn3k")
+metadata/_edit_group_ = true
+
+[node name="enemyCollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_wt7mw")
+
+[node name="enemyAnimatedGraphic" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_k7aoo")
+animation = &"look_up"
