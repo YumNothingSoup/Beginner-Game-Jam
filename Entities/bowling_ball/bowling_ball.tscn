@@ -1,10 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwvl3fycobgck"]
+[gd_scene load_steps=5 format=3 uid="uid://bwvl3fycobgck"]
 
 [ext_resource type="Script" path="res://Entities/bowling_ball/bowling_ball.gd" id="1_2faiv"]
 [ext_resource type="Texture2D" uid="uid://d1q8i4r2fr311" path="res://icon.svg" id="2_trkma"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ephr6"]
-bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4yfcb"]
 radius = 23.0217
@@ -12,12 +9,9 @@ radius = 23.0217
 [sub_resource type="CircleShape2D" id="CircleShape2D_qk8ws"]
 radius = 23.0
 
-[node name="BowlingBall" type="RigidBody2D"]
+[node name="BowlingBall" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 9
-physics_material_override = SubResource("PhysicsMaterial_ephr6")
-gravity_scale = 0.0
-linear_damp = 0.5
 script = ExtResource("1_2faiv")
 throw_strength = 1500.0
 
