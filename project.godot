@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Events="*res://Global/Events.gd"
+GlobalData="*res://Global/GlobalData.gd"
 
 [debug]
 

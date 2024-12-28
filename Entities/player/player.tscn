@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://dvu67lgff14pj"]
 
-[ext_resource type="Texture2D" uid="uid://gmfl80oovw3d" path="res://Entities/player/animations/Prototype_Character.png" id="1_4w1qw"]
+[ext_resource type="Texture2D" uid="uid://gmfl80oovw3d" path="res://charicters/player/animations/Prototype_Character.png" id="1_4w1qw"]
 [ext_resource type="Script" path="res://Entities/player/player.gd" id="1_ydwdm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sutav"]

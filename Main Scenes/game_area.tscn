@@ -1,12 +1,14 @@
-[gd_scene load_steps=11 format=4 uid="uid://cfmsj4pi1erq6"]
+[gd_scene load_steps=13 format=4 uid="uid://cfmsj4pi1erq6"]
 
 [ext_resource type="Texture2D" uid="uid://c85lpf1rfhr17" path="res://Environment/placeholder_tileset.png" id="1_l0jwx"]
 [ext_resource type="PackedScene" uid="uid://df2118ff0ei5x" path="res://System Managers/turn_manager.tscn" id="1_p1l5c"]
+[ext_resource type="PackedScene" uid="uid://cma6uxfsl047t" path="res://System Managers/score_manager.tscn" id="1_ruth1"]
 [ext_resource type="PackedScene" uid="uid://dvu67lgff14pj" path="res://Entities/player/player.tscn" id="2_4x8qw"]
 [ext_resource type="PackedScene" uid="uid://cbf5d1fnt08pi" path="res://scene_not_main/pause_menu.tscn" id="3_bdykk"]
 [ext_resource type="PackedScene" uid="uid://bwvl3fycobgck" path="res://Entities/bowling_ball/bowling_ball.tscn" id="4_75x6v"]
 [ext_resource type="PackedScene" uid="uid://n2rm3356m4q5" path="res://UI/turn_label.tscn" id="5_mb6fo"]
 [ext_resource type="PackedScene" uid="uid://bnhmd4i7ebnn6" path="res://Entities/enemies/enemy.tscn" id="7_kp1eo"]
+[ext_resource type="PackedScene" uid="uid://dw5t4k0s63p14" path="res://UI/score_label.tscn" id="8_jn7te"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f751s"]
 texture = ExtResource("1_l0jwx")
@@ -43,6 +45,8 @@ friction = 0.5
 bounce = 1.0
 
 [node name="Main" type="Node2D"]
+
+[node name="ScoreManager" parent="." instance=ExtResource("1_ruth1")]
 
 [node name="TurnManager" parent="." instance=ExtResource("1_p1l5c")]
 
@@ -101,9 +105,23 @@ position = Vector2(362, 56)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="TurnLabel" parent="UI" instance=ExtResource("5_mb6fo")]
-
 [node name="pause_menu" parent="UI" instance=ExtResource("3_bdykk")]
 visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = -116.0
+offset_right = 518.0
+offset_bottom = -23.0
+grow_vertical = 0
+
+[node name="ScoreLabel" parent="UI/VBoxContainer" instance=ExtResource("8_jn7te")]
+layout_mode = 2
+
+[node name="TurnLabel" parent="UI/VBoxContainer" instance=ExtResource("5_mb6fo")]
+layout_mode = 2
 
 [connection signal="ball_stopped" from="BowlingBall" to="TurnManager" method="_on_bowling_ball_ball_stopped"]
