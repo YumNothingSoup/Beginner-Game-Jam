@@ -59,6 +59,7 @@ rotation = -0.00532027
 unique_name_in_owner = true
 visible = false
 position = Vector2(561, 363)
+
 velocity_threshold = 10.0
 throw_strength = 750.0
 
