@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw5t4k0s63p14"]
+
+[ext_resource type="Script" path="res://UI/score_label.gd" id="1_4ajvr"]
+
+[sub_resource type="SystemFont" id="SystemFont_kybf6"]
+font_names = PackedStringArray("Arial Rounded MT")
+
+[node name="ScoreLabel" type="Label"]
+theme_override_fonts/font = SubResource("SystemFont_kybf6")
+theme_override_font_sizes/font_size = 40
+text = "SCORE: 0"
+script = ExtResource("1_4ajvr")

@@ -19,7 +19,8 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if animate.animation == "death":
 		$transition.visible = true
 		$transition/AnimationPlayer.play("scene_transition")
-		await  get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(0.5).timeout
+		Events.player_died.emit()
 		get_tree().change_scene_to_file("res://scene_not_main/death_scene.tscn")
 
 func _on_hitbox_area_entered(area: Area2D) -> void:

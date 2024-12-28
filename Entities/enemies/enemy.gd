@@ -16,6 +16,9 @@ var isTurn = false
 # Enemy movement speed, made it an export variable for better testing
 @export var velocity: float = 100
 
+# Score given when knocked down
+@export var value: int = 1
+
 func _ready() -> void:
 	Events.enemy_turn_started.connect(on_enemy_turn_start)
 	Events.player_turn_started.connect(on_player_turn_start)
@@ -62,4 +65,9 @@ func animate():
 
 # eventlistener - if enemy collision box touches ball then remove this enemy
 func touchBall():
+	# Check if score manager exists in the tree, then handle scoring
+	var score_manager = get_tree().get_first_node_in_group("score_manager")
+	if score_manager != null:
+		score_manager.gain_score(value)
+		
 	self.queue_free()
