@@ -1,5 +1,4 @@
-
-[gd_scene load_steps=13 format=4 uid="uid://cfmsj4pi1erq6"]
+[gd_scene load_steps=14 format=4 uid="uid://cfmsj4pi1erq6"]
 
 [ext_resource type="Texture2D" uid="uid://c85lpf1rfhr17" path="res://Environment/placeholder_tileset.png" id="1_l0jwx"]
 [ext_resource type="PackedScene" uid="uid://df2118ff0ei5x" path="res://System Managers/turn_manager.tscn" id="1_p1l5c"]
@@ -10,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://n2rm3356m4q5" path="res://UI/turn_label.tscn" id="5_mb6fo"]
 [ext_resource type="PackedScene" uid="uid://bnhmd4i7ebnn6" path="res://Entities/enemies/enemy.tscn" id="7_kp1eo"]
 [ext_resource type="PackedScene" uid="uid://dw5t4k0s63p14" path="res://UI/score_label.tscn" id="8_jn7te"]
+[ext_resource type="Script" path="res://UI/multiplier_label.gd" id="8_kx7od"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f751s"]
 texture = ExtResource("1_l0jwx")
@@ -41,6 +41,9 @@ texture = ExtResource("1_l0jwx")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_f751s")
 
+[sub_resource type="SystemFont" id="SystemFont_ap01h"]
+font_names = PackedStringArray("Arial Rounded MT")
+
 [node name="Main" type="Node2D"]
 
 [node name="ScoreManager" parent="." instance=ExtResource("1_ruth1")]
@@ -64,7 +67,6 @@ rotation = -0.00532027
 unique_name_in_owner = true
 visible = false
 position = Vector2(561, 363)
-
 velocity_threshold = 10.0
 throw_strength = 750.0
 
@@ -76,6 +78,42 @@ position = Vector2(966, 511)
 
 [node name="enemy3" parent="." instance=ExtResource("7_kp1eo")]
 position = Vector2(937, 182)
+
+[node name="enemy12" parent="." instance=ExtResource("7_kp1eo")]
+position = Vector2(856, 111)
+
+[node name="enemy13" parent="." instance=ExtResource("7_kp1eo")]
+position = Vector2(864, 223)
+
+[node name="enemy14" parent="." instance=ExtResource("7_kp1eo")]
+position = Vector2(932, 122)
+
+[node name="enemy15" parent="." instance=ExtResource("7_kp1eo")]
+position = Vector2(982, 161)
+
+[node name="enemy16" parent="." instance=ExtResource("7_kp1eo")]
+position = Vector2(873, 166)
+
+[node name="enemy17" parent="." instance=ExtResource("7_kp1eo")]
+position = Vector2(930, 228)
+
+[node name="enemy18" parent="." instance=ExtResource("7_kp1eo")]
+position = Vector2(953, 297)
+
+[node name="enemy19" parent="." instance=ExtResource("7_kp1eo")]
+position = Vector2(892, 285)
+
+[node name="enemy20" parent="." instance=ExtResource("7_kp1eo")]
+position = Vector2(892, 285)
+
+[node name="enemy21" parent="." instance=ExtResource("7_kp1eo")]
+position = Vector2(1013, 241)
+
+[node name="enemy22" parent="." instance=ExtResource("7_kp1eo")]
+position = Vector2(1012, 329)
+
+[node name="enemy23" parent="." instance=ExtResource("7_kp1eo")]
+position = Vector2(956, 365)
 
 [node name="enemy4" parent="." instance=ExtResource("7_kp1eo")]
 position = Vector2(1007, 244)
@@ -115,6 +153,14 @@ offset_top = -116.0
 offset_right = 518.0
 offset_bottom = -23.0
 grow_vertical = 0
+
+[node name="MultiplierLabel" type="Label" parent="UI/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_ap01h")
+theme_override_font_sizes/font_size = 40
+text = "MULTIPLIER: 1"
+script = ExtResource("8_kx7od")
 
 [node name="ScoreLabel" parent="UI/VBoxContainer" instance=ExtResource("8_jn7te")]
 layout_mode = 2
