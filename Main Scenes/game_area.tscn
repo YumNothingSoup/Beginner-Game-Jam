@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://cfmsj4pi1erq6"]
+[gd_scene load_steps=10 format=4 uid="uid://cfmsj4pi1erq6"]
 
 [ext_resource type="Texture2D" uid="uid://c85lpf1rfhr17" path="res://Environment/placeholder_tileset.png" id="1_l0jwx"]
 [ext_resource type="PackedScene" uid="uid://df2118ff0ei5x" path="res://System Managers/turn_manager.tscn" id="1_p1l5c"]
@@ -38,10 +38,6 @@ texture = ExtResource("1_l0jwx")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_f751s")
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mfkoc"]
-friction = 0.25
-bounce = 0.75
-
 [node name="Main" type="Node2D"]
 
 [node name="TurnManager" parent="." instance=ExtResource("1_p1l5c")]
@@ -63,11 +59,7 @@ rotation = -0.00532027
 unique_name_in_owner = true
 visible = false
 position = Vector2(561, 363)
-physics_material_override = SubResource("PhysicsMaterial_mfkoc")
-linear_damp_mode = 1
-linear_damp = 1.0
-angular_damp_mode = 1
-angular_damp = 1.0
+
 velocity_threshold = 10.0
 throw_strength = 750.0
 
