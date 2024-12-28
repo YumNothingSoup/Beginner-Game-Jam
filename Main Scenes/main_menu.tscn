@@ -56,6 +56,12 @@ layout_mode = 2
 text = "Exit
 "
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="PlaceholderBG" type="Panel" parent="ParallaxBackground"]
+offset_right = 1152.0
+offset_bottom = 648.0
+
 [connection signal="pressed" from="VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
