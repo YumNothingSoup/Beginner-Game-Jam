@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://cfmsj4pi1erq6"]
+[gd_scene load_steps=15 format=4 uid="uid://cfmsj4pi1erq6"]
 
 [ext_resource type="Texture2D" uid="uid://c85lpf1rfhr17" path="res://Environment/placeholder_tileset.png" id="1_l0jwx"]
 [ext_resource type="PackedScene" uid="uid://df2118ff0ei5x" path="res://System Managers/turn_manager.tscn" id="1_p1l5c"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Main Scenes/enemy_spawn_area.gd" id="4_p6rth"]
 [ext_resource type="PackedScene" uid="uid://n2rm3356m4q5" path="res://UI/turn_label.tscn" id="5_mb6fo"]
 [ext_resource type="PackedScene" uid="uid://dw5t4k0s63p14" path="res://UI/score_label.tscn" id="8_jn7te"]
+[ext_resource type="Script" path="res://UI/multiplier_label.gd" id="8_kx7od"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f751s"]
 texture = ExtResource("1_l0jwx")
@@ -42,6 +43,9 @@ sources/0 = SubResource("TileSetAtlasSource_f751s")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6oni3"]
 size = Vector2(1021, 511)
+
+[sub_resource type="SystemFont" id="SystemFont_ap01h"]
+font_names = PackedStringArray("Arial Rounded MT")
 
 [node name="Main" type="Node2D"]
 
@@ -100,6 +104,14 @@ offset_top = -116.0
 offset_right = 518.0
 offset_bottom = -23.0
 grow_vertical = 0
+
+[node name="MultiplierLabel" type="Label" parent="UI/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_ap01h")
+theme_override_font_sizes/font_size = 40
+text = "MULTIPLIER: 1"
+script = ExtResource("8_kx7od")
 
 [node name="ScoreLabel" parent="UI/VBoxContainer" instance=ExtResource("8_jn7te")]
 layout_mode = 2
