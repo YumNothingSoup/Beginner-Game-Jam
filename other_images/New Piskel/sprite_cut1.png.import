@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwv5wv1x6p7mt"
-path="res://.godot/imported/enemy-A-looking-up.png-24a04aeb19af5baaf4cf1178ce24aa00.ctex"
+uid="uid://dht8ncd661sy8"
+path="res://.godot/imported/sprite_cut1.png-c3258528a7cf634bc0042bb98d3b788c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/enemy-A-looking-up.png"
-dest_files=["res://.godot/imported/enemy-A-looking-up.png-24a04aeb19af5baaf4cf1178ce24aa00.ctex"]
+source_file="res://other_images/New Piskel/sprite_cut1.png"
+dest_files=["res://.godot/imported/sprite_cut1.png-c3258528a7cf634bc0042bb98d3b788c.ctex"]
 
 [params]
 

@@ -37,9 +37,9 @@ func on_player_turn_start():
 	isTurn = false
 
 # Locate player and move at constant rate to ehm
-func moveToPlayer(delta, velocity):
+func moveToPlayer(delta, speed):
 	directionVector = self.position.direction_to(playerPosition)
-	movementVector = directionVector * velocity
+	movementVector = directionVector * speed
 	self.position += movementVector * delta
 
 # Update enemy's animations

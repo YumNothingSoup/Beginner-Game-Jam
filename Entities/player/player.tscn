@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://dvu67lgff14pj"]
 
-[ext_resource type="Texture2D" uid="uid://gmfl80oovw3d" path="res://charicters/player/animations/Prototype_Character.png" id="1_4w1qw"]
+[ext_resource type="Texture2D" uid="uid://gmfl80oovw3d" path="res://Entities/player/animations/Prototype_Character.png" id="1_4w1qw"]
 [ext_resource type="Script" path="res://Entities/player/player.gd" id="1_ydwdm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sutav"]
@@ -151,10 +151,10 @@ shape = SubResource("RectangleShape2D_vjb5u")
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="transition"]
-offset_left = -72.0
-offset_top = -40.0
-offset_right = 73.0
-offset_bottom = 40.0
+offset_left = -222.0
+offset_top = -115.0
+offset_right = 214.0
+offset_bottom = 197.0
 color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="transition"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhp78k7yo7jfx"
-path="res://.godot/imported/enemy-A-looking-left.png-5dd5b06c1e10ebade79dbf424cf7b8d1.ctex"
+uid="uid://cy4jw2eusgxt0"
+path="res://.godot/imported/New Piskel-1.png.png-ab43e27353f1d5dbc2389bd5b43f845b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/enemy-A-looking-left.png"
-dest_files=["res://.godot/imported/enemy-A-looking-left.png-5dd5b06c1e10ebade79dbf424cf7b8d1.ctex"]
+source_file="res://other_images/New Piskel/New Piskel-1.png.png"
+dest_files=["res://.godot/imported/New Piskel-1.png.png-ab43e27353f1d5dbc2389bd5b43f845b.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nn3rb0kli8ou"
-path="res://.godot/imported/enemy-B-looking-left.png-42c7aa120835dc4e215aeae0bf26bbe6.ctex"
+uid="uid://cgs8rrgoag2pe"
+path="res://.godot/imported/sprite_cut0.png-09007738fd12d7b048bf48f397d326eb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/enemy-B-looking-left.png"
-dest_files=["res://.godot/imported/enemy-B-looking-left.png-42c7aa120835dc4e215aeae0bf26bbe6.ctex"]
+source_file="res://other_images/New Piskel/sprite_cut0.png"
+dest_files=["res://.godot/imported/sprite_cut0.png-09007738fd12d7b048bf48f397d326eb.ctex"]
 
 [params]
 
