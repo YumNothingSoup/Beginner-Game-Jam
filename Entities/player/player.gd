@@ -35,6 +35,8 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		$transition/AnimationPlayer.play("scene_transition")
 		await  get_tree().create_timer(0.5).timeout
 		get_tree().change_scene_to_file("res://scene_not_main/death_scene.tscn")
+		
+		Engine.time_scale = 1.0
 
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
