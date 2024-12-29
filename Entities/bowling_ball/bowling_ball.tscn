@@ -16,6 +16,8 @@ script = ExtResource("1_2faiv")
 throw_strength = 1500.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
 scale = Vector2(0.333984, 0.333984)
 texture = ExtResource("2_trkma")
 
@@ -30,5 +32,12 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_qk8ws")
+
+[node name="PredictionRayCast" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+
+[node name="PredictionLine" type="Line2D" parent="."]
+unique_name_in_owner = true
+width = 8.0
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

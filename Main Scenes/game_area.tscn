@@ -80,15 +80,17 @@ polygon = PackedVector2Array(524, 262, 480, 305, 480, 369, 521, 419, 614, 419, 6
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_4x8qw")]
 unique_name_in_owner = true
+z_index = 1
 position = Vector2(564, 343)
 rotation = -0.00532027
 
 [node name="BowlingBall" parent="." instance=ExtResource("4_75x6v")]
 unique_name_in_owner = true
-visible = false
+visibility_layer = 4
 position = Vector2(561, 363)
 velocity_threshold = 10.0
 throw_strength = 750.0
+max_prediction_distance = 1000.0
 
 [node name="UI" type="CanvasLayer" parent="."]
 
