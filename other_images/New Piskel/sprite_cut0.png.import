@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gmfl80oovw3d"
-path="res://.godot/imported/Prototype_Character.png-e1b3f4decc06d61a1c0a21f7ae4c2351.ctex"
+uid="uid://cgs8rrgoag2pe"
+path="res://.godot/imported/sprite_cut0.png-09007738fd12d7b048bf48f397d326eb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://charicters/player/animations/Prototype_Character.png"
-dest_files=["res://.godot/imported/Prototype_Character.png-e1b3f4decc06d61a1c0a21f7ae4c2351.ctex"]
+source_file="res://other_images/New Piskel/sprite_cut0.png"
+dest_files=["res://.godot/imported/sprite_cut0.png-09007738fd12d7b048bf48f397d326eb.ctex"]
 
 [params]
 

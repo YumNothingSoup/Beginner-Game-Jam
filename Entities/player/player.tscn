@@ -151,10 +151,10 @@ shape = SubResource("RectangleShape2D_vjb5u")
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="transition"]
-offset_left = -72.0
-offset_top = -40.0
-offset_right = 73.0
-offset_bottom = 40.0
+offset_left = -222.0
+offset_top = -115.0
+offset_right = 214.0
+offset_bottom = 197.0
 color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="transition"]

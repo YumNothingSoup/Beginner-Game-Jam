@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm0miaal8mlup"]
+
+[ext_resource type="PackedScene" uid="uid://dvu67lgff14pj" path="res://Entities/player/player.tscn" id="2_gllha"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rtpk"]
+size = Vector2(65, 46)
+
+[node name="entry_to_game" type="Node2D"]
+
+[node name="ground" type="ColorRect" parent="."]
+offset_left = -24808.0
+offset_top = -19609.0
+offset_right = -9610.0
+offset_bottom = -18413.0
+scale = Vector2(4.09912, 752.075)
+color = Color(0.262617, 0.635304, 0.346169, 1)
+
+[node name="entry_point" type="ColorRect" parent="."]
+offset_left = 267.0
+offset_right = 319.0
+offset_bottom = 48.0
+color = Color(0.407374, 0.407374, 0.407374, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 273.0
+offset_top = 11.0
+offset_right = 315.0
+offset_bottom = 34.0
+text = "enter"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 339.0
+offset_top = 18.0
+offset_right = 379.0
+offset_bottom = 41.0
+text = "it is ment to be a hole"
+
+[node name="collitions" type="Node2D" parent="."]
+
+[node name="entry_area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="entry_area"]
+position = Vector2(296.5, 25)
+shape = SubResource("RectangleShape2D_5rtpk")
+
+[node name="player" parent="." instance=ExtResource("2_gllha")]
+position = Vector2(285, 189)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(286, 191)
+
+[connection signal="body_entered" from="entry_area" to="player" method="_on_entry_area_body_entered"]

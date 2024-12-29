@@ -1,0 +1,134 @@
+[gd_scene load_steps=10 format=3 uid="uid://mfsqheuj2pmh"]
+
+[ext_resource type="Script" path="res://Main Scenes/cut_scene.gd" id="1_4x3h2"]
+[ext_resource type="Texture2D" uid="uid://cgs8rrgoag2pe" path="res://other_images/New Piskel/sprite_cut0.png" id="1_ih7ej"]
+[ext_resource type="Texture2D" uid="uid://dht8ncd661sy8" path="res://other_images/New Piskel/sprite_cut1.png" id="2_6hfsl"]
+[ext_resource type="Texture2D" uid="uid://bjucgs5cgaio1" path="res://other_images/New Piskel/sprite_cut2.png" id="3_m3f4f"]
+[ext_resource type="Texture2D" uid="uid://cy4jw2eusgxt0" path="res://other_images/New Piskel/New Piskel-1.png.png" id="4_d3qix"]
+
+[sub_resource type="Animation" id="Animation_o2opm"]
+length = 6.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(55, -70), Vector2(59, 341)]
+}
+
+[sub_resource type="Animation" id="Animation_et8oo"]
+resource_name = "cut_scene"
+length = 6.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6.53333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(100, 62), Vector2(122, 346)]
+}
+
+[sub_resource type="Animation" id="Animation_gfkte"]
+resource_name = "cut_scene2"
+length = 6.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-32, -67), Vector2(-25, 340)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ck4hf"]
+_data = {
+"RESET": SubResource("Animation_o2opm"),
+"cut_scene": SubResource("Animation_et8oo"),
+"cut_scene2": SubResource("Animation_gfkte")
+}
+
+[node name="cut_scene" type="Node2D"]
+script = ExtResource("1_4x3h2")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(55, -70)
+zoom = Vector2(5, 5)
+limit_right = 160
+limit_smoothed = true
+position_smoothing_speed = 10.0
+drag_horizontal_offset = 1.0
+editor_draw_limits = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 6.9
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(45.5, 62)
+scale = Vector2(1.43125, 1)
+texture = ExtResource("1_ih7ej")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(47, 199)
+scale = Vector2(1.45, 1)
+texture = ExtResource("2_6hfsl")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(45, 341)
+scale = Vector2(1.43125, 1.00781)
+texture = ExtResource("3_m3f4f")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(46, -64)
+scale = Vector2(7.125, 3.34375)
+texture = ExtResource("4_d3qix")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = 75.0
+offset_top = 172.0
+offset_right = 233.0
+offset_bottom = 221.0
+theme_override_font_sizes/font_size = 11
+text = "You fell into
+ my trap"
+uppercase = true
+
+[node name="Label3" type="Label" parent="."]
+texture_filter = 1
+offset_left = 188.0
+offset_top = 137.0
+offset_right = 346.0
+offset_bottom = 186.0
+theme_override_font_sizes/font_size = 11
+text = "make it look god pls"
+uppercase = true
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 67.0
+offset_top = 319.0
+offset_right = 157.0
+offset_bottom = 356.0
+theme_override_font_sizes/font_size = 12
+text = "now, where are
+ my minions?"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ck4hf")
+}
+autoplay = "cut_scene2"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
