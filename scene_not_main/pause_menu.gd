@@ -1,31 +1,21 @@
 extends Control
 
-
-
-func _process(delta: float) -> void:
-	If_esc_pressed()
-
-
-
 func Resume():
-	
-	get_tree().paused= false
-	self.visible = false
+	get_tree().paused = false
+	hide()
 
 func Pause():
-	get_tree().paused= true
+	get_tree().paused = true
+	show()
 
-func If_esc_pressed():
-	if Input.is_action_just_pressed("esc") and !get_tree().paused:
-		Pause()
-		self.visible = true
-	if Input.is_action_just_pressed("esc") and get_tree().paused:
-		Resume()
-		self.visible = true
-		
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("esc"):
+		if !get_tree().paused:
+			Pause()		
+		elif get_tree().paused:
+			Resume()
 
-
-func _on_resume_pressed() :
+func _on_resume_pressed():
 	Resume()
 
 func _on_restart_pressed() -> void:
