@@ -35,7 +35,7 @@ var can_throw = true
 func _ready() -> void:
 	Events.player_turn_started.connect(on_player_turn_start)
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Reset line every frame
 	prediction_line.clear_points()
 	
@@ -127,8 +127,10 @@ func _physics_process(delta: float) -> void:
 	
 func on_player_turn_start():
 	can_throw = true
+	reset_ball()
 	
-	# Resets the ball to the center and hides it
+# Resets the ball to the center and hides it
+func reset_ball():
 	sprite_2d.hide()
 	global_position = player.global_position
 	speed = 0
@@ -139,6 +141,7 @@ func on_player_turn_start():
 func on_player_turn_end():
 	emit_signal("ball_stopped")
 	has_stopped = true
+	reset_ball()
 
 func launch_ball(direction: Vector2, force: float):
 	has_stopped = false
