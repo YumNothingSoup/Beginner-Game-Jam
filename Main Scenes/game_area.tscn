@@ -51,7 +51,7 @@ script = ExtResource("1_7aw1g")
 
 [node name="TurnManager" parent="." instance=ExtResource("1_p1l5c")]
 
-[node name="EnemyContainer" type="Node" parent="."]
+[node name="EnemyContainer" type="Node" parent="." groups=["enemy_container"]]
 
 [node name="TileMap" type="Node2D" parent="."]
 position = Vector2(-1, 0)
@@ -107,6 +107,8 @@ grow_vertical = 0
 
 [node name="ScoreLabel" parent="UI/VBoxContainer" instance=ExtResource("8_jn7te")]
 layout_mode = 2
+text = "SCORE: 0
+HIGH SCORE: 0"
 
 [node name="TurnLabel" parent="UI/VBoxContainer" instance=ExtResource("5_mb6fo")]
 layout_mode = 2

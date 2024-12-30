@@ -10,6 +10,7 @@ radius = 23.0217
 radius = 23.0
 
 [node name="BowlingBall" type="CharacterBody2D"]
+z_index = 3
 collision_layer = 4
 collision_mask = 9
 script = ExtResource("1_2faiv")
@@ -38,6 +39,7 @@ unique_name_in_owner = true
 
 [node name="PredictionLine" type="Line2D" parent="."]
 unique_name_in_owner = true
+z_index = 1
 width = 8.0
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

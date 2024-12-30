@@ -56,6 +56,7 @@ metadata/_edit_group_ = true
 shape = SubResource("CapsuleShape2D_wt7mw")
 
 [node name="enemyAnimatedGraphic" type="AnimatedSprite2D" parent="."]
+z_index = 2
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_k7aoo")
 animation = &"look_down"
