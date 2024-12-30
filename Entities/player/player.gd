@@ -21,13 +21,11 @@ func _physics_process(_delta):
 		get_input() 	
 		move_and_slide()
 	
-	
-	
 #death func
-	
 func Death():
 	Engine.time_scale = 0.5
 	animate.play("death")
+	Events.player_died.emit()
 	
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animate.animation == "death":

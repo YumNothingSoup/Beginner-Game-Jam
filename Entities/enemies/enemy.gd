@@ -68,6 +68,6 @@ func touchBall():
 	# Check if score manager exists in the tree, then handle scoring
 	var score_manager = get_tree().get_first_node_in_group("score_manager")
 	if score_manager != null:
-		score_manager.gain_score(value)
+		score_manager.gain_score(value, global_position)
 		
 	self.queue_free()
