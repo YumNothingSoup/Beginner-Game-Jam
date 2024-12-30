@@ -1,5 +1,7 @@
 extends Area2D
 
+const SPAWN_MARKER = preload("res://UI/spawn_marker.tscn")
+
 @export var enemy_scene = preload("res://Entities/enemies/enemy.tscn")
 
 @export var enemy_spawn_area: CollisionShape2D
@@ -24,13 +26,20 @@ func on_player_turn_start():
 	if turn_count % enemy_increment_turn_interval == 0:
 		start_enemy_count += enemy_count_incrementation_value
 	if turn_count % enemy_spawn_turn_interval == 0:
-		spawn_enemies()
-
-func spawn_enemies() -> void:
+		spawn_enemies_next_turn()
+		
+func spawn_enemies():
 	for i in range(start_enemy_count):
 		var enemy_instance = enemy_scene.instantiate()
 		enemy_instance.position = get_random_point_in_area()
 		enemy_container.add_child(enemy_instance)
+
+func spawn_enemies_next_turn() -> void:
+	for i in range(start_enemy_count):
+		var marker = SPAWN_MARKER.instantiate()
+		marker.enemy_to_spawn = enemy_scene
+		marker.position = get_random_point_in_area()
+		enemy_container.add_child(marker)
 
 func get_random_point_in_area() -> Vector2:
 	var rng = RandomNumberGenerator.new()
