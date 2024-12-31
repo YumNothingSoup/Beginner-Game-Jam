@@ -1,0 +1,97 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp86exqboniuk"]
+
+[ext_resource type="Script" path="res://Main Scenes/settings.gd" id="1_l3b7e"]
+
+[sub_resource type="SystemFont" id="SystemFont_62s75"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l3b7e")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 0
+offset_right = 220.0
+offset_bottom = 146.0
+current_tab = 2
+clip_tabs = false
+drag_to_rearrange_enabled = true
+
+[node name="Audio" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Label" type="Label" parent="TabContainer/Audio"]
+layout_mode = 2
+text = "Mute audio     |   volume"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Audio"]
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="TabContainer/Audio/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Audio/HBoxContainer"]
+layout_mode = 2
+text = "                  just change
+                 your main 
+                 volume!
+"
+
+[node name="Cotrolls" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Label" type="Label" parent="TabContainer/Cotrolls"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Aim                   |   mouse pointer"
+
+[node name="Label2" type="Label" parent="TabContainer/Cotrolls"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Movement      |  WASD"
+
+[node name="Label3" type="Label" parent="TabContainer/Cotrolls"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "bowl                 |   left mouse click"
+
+[node name="Rules!" type="ColorRect" parent="TabContainer"]
+layout_mode = 2
+color = Color(0.194882, 0.194882, 0.194882, 1)
+metadata/_tab_index = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/Rules!"]
+layout_mode = 2
+offset_left = 7.0
+offset_top = 1.0
+offset_right = 222.0
+offset_bottom = 132.0
+theme_override_fonts/normal_font = SubResource("SystemFont_62s75")
+theme_override_font_sizes/italics_font_size = 1
+theme_override_font_sizes/normal_font_size = 11
+text = "The aim of the game is to get as many points as possible . This is achived by knoking down as many pins as possible without the pins reaching you . This is done most efficiently by geting combos or delivarys these, increase your points even more. Good luck and  HAVE FUN"
+context_menu_enabled = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(113, 74)
+zoom = Vector2(3, 3)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = -64.0
+offset_top = -25.0
+offset_right = 5.0
+offset_bottom = 20.0
+text = "Back <--"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
