@@ -2,12 +2,15 @@ extends Control
 
 
 func _on_easy_pressed() -> void:
+	GlobalData.selected_difficulty = Enums.DIFFICULTY.EASY
 	change_scene_to_game()
 
 func _on_medium_pressed() -> void:
+	GlobalData.selected_difficulty = Enums.DIFFICULTY.EASY
 	change_scene_to_game()
 
 func _on_hard_pressed() -> void:
+	GlobalData.selected_difficulty = Enums.DIFFICULTY.EASY
 	change_scene_to_game()
 
 func change_scene_to_game() -> void:

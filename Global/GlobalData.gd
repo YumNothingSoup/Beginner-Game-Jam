@@ -7,6 +7,8 @@ var score: int = 0:
 			high_score = score
 var high_score: int = 0
 
+var selected_difficulty: Enums.DIFFICULTY
+
 func _ready() -> void:
 	Events.game_start.connect(on_game_start)
 	

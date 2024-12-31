@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Events="*res://Global/Events.gd"
 GlobalData="*res://Global/GlobalData.gd"
+Enums="*res://Global/Enums.gd"
 
 [debug]
 
