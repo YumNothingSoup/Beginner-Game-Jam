@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="SpecialEnemyPool" load_steps=3 format=3 uid="uid://bflfpw615m61f"]
+
+[ext_resource type="PackedScene" uid="uid://bdgkod6g2w2r2" path="res://Entities/enemies/ShieldEnemy/shield_enemy.tscn" id="1_qawtq"]
+[ext_resource type="Script" path="res://Entities/enemies/special_enemy_pool.gd" id="2_yxp16"]
+
+[resource]
+script = ExtResource("2_yxp16")
+enemy_pool = Array[PackedScene]([ExtResource("1_qawtq")])
