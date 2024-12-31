@@ -26,9 +26,10 @@ func _ready() -> void:
 func _process(delta):
 	playerPosition = get_tree().get_first_node_in_group("player").global_position
 	
+	animate()
+	
 	if (isTurn):
 		moveToPlayer(delta, velocity)
-		animate()
 
 func on_enemy_turn_start():
 	isTurn = true
@@ -44,22 +45,22 @@ func moveToPlayer(delta, speed):
 
 # Update enemy's animations
 func animate():
-	if (movementVector.length() > 0):
-		$enemyAnimatedGraphic.play()
-	else: 
-		$enemyAnimatedGraphic.stop()
+	if isTurn == true:
+		$enemyAnimatedGraphic.play("morphed")
+	else:
+		$enemyAnimatedGraphic.play("standard")
 
 	if movementVector.x != 0:
 		if movementVector.x > 0:
-			$enemyAnimatedGraphic.animation = "look_right"
+			$enemyAnimatedGraphic.flip_h = false
 		else:
-			$enemyAnimatedGraphic.animation = "look_left"
+			$enemyAnimatedGraphic.flip_h = true
 	
-	elif movementVector.y != 0:
-		if movementVector.y > 0:
-			$enemyAnimatedGraphic.animation = "look_down"
-		else:
-			$enemyAnimatedGraphic.animation = "look_up"
+	#elif movementVector.y != 0:
+		#if movementVector.y > 0:
+			#$enemyAnimatedGraphic.animation = "look_down"
+		#else:
+			#$enemyAnimatedGraphic.animation = "look_up"
 
 # eventlistener - if enemy collision box touches player's then end game
 
@@ -69,5 +70,5 @@ func touchBall():
 	var score_manager = get_tree().get_first_node_in_group("score_manager")
 	if score_manager != null:
 		score_manager.gain_score(value, global_position)
-		
+	
 	self.queue_free()
