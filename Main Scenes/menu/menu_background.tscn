@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://d0ptv7n27s8tn"]
+
+[node name="MenuBackground" type="ParallaxBackground"]
+
+[node name="PlaceholderBG" type="Panel" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0

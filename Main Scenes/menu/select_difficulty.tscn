@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh2sk2i2wd25d"]
+
+[ext_resource type="PackedScene" uid="uid://d0ptv7n27s8tn" path="res://Main Scenes/menu/menu_background.tscn" id="1_t2b87"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q2lcg"]
+font_size = 48
+
+[node name="SelectDifficulty" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -179.5
+offset_top = 219.0
+offset_right = 179.5
+offset_bottom = 286.0
+grow_horizontal = 2
+text = "Select Difficulty"
+label_settings = SubResource("LabelSettings_q2lcg")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = -15.5
+offset_right = 85.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Easy" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Easy"
+
+[node name="Medium" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Medium"
+
+[node name="Hard" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Hard
+"
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_t2b87")]
