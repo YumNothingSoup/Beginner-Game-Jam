@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cfmsj4pi1erq6"]
+[gd_scene load_steps=19 format=4 uid="uid://cfmsj4pi1erq6"]
 
 [ext_resource type="Script" path="res://Main Scenes/game_area.gd" id="1_7aw1g"]
 [ext_resource type="Texture2D" uid="uid://c85lpf1rfhr17" path="res://Environment/placeholder_tileset.png" id="1_l0jwx"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cpfd7nprdbuc7" path="res://Resources/bowling_placeholder_background.png" id="4_86y6x"]
 [ext_resource type="Script" path="res://Main Scenes/enemy_spawn_area.gd" id="4_p6rth"]
 [ext_resource type="PackedScene" uid="uid://n2rm3356m4q5" path="res://UI/turn_label.tscn" id="5_mb6fo"]
+[ext_resource type="Resource" uid="uid://bflfpw615m61f" path="res://Entities/enemies/special_enemy_pool.tres" id="7_8x8o2"]
 [ext_resource type="Script" path="res://UI/score_label.gd" id="10_p03li"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f751s"]
@@ -95,9 +96,11 @@ tile_set = SubResource("TileSet_1rf8j")
 
 [node name="EnemySpawnArea" type="Area2D" parent="." node_paths=PackedStringArray("enemy_spawn_area", "player_preventation_area", "enemy_container")]
 script = ExtResource("4_p6rth")
+special_enemy_pool = ExtResource("7_8x8o2")
 enemy_spawn_area = NodePath("CollisionShape2D")
 player_preventation_area = NodePath("../PlayerPreventationArea")
 enemy_container = NodePath("../EnemyContainer")
+special_enemy_chance = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySpawnArea"]
 position = Vector2(577.5, 322.5)

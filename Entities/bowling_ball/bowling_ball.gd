@@ -5,9 +5,11 @@ class_name BowlingBall
 @export var velocity_threshold: float = 5
 # Starting speed when thrown
 @export var throw_strength: float = 1000
+@export var base_rotation_speed: float = 30
 
 # Lose this amount of speed every second
 @export var speed_loss_over_time: float = 200
+@export var rotation_speed_loss: float = 0.1
 
 @onready var player: CharacterBody2D = %Player
 
@@ -16,7 +18,7 @@ class_name BowlingBall
 @onready var hurtbox: Area2D = %Hurtbox
 
 # Sprite (to hide the ball)
-@onready var sprite_2d: Sprite2D = %Sprite2D
+@onready var sprite_2d: AnimatedSprite2D = %Sprite2D
 
 @onready var prediction_ray: RayCast2D = %PredictionRayCast
 @onready var prediction_line: Line2D = %PredictionLine
@@ -28,12 +30,15 @@ var prediction_max_bounces: int = 3
 
 var ball_direction: Vector2 = Vector2.ZERO
 var speed: float = 0
+var rotation_speed: float = 0
 
 var has_stopped = true
 var can_throw = true
 
 func _ready() -> void:
 	Events.player_turn_started.connect(on_player_turn_start)
+	
+	rotation_speed = base_rotation_speed
 	
 func _process(_delta: float) -> void:
 	# Reset line every frame
@@ -77,7 +82,7 @@ func _process(_delta: float) -> void:
 			if previous_collision_point != null and previous_collision_point is TileMapLayer:
 				previous_collision_point.tile_set.set_physics_layer_collision_layer(1, 1)
 				previous_collision_point.tile_set.set_physics_layer_collision_mask(1, 1)
-			
+				
 			if previous_collision_point is TileMapLayer:
 				previous_collision_point = collider
 				previous_collision_point.tile_set.set_physics_layer_collision_layer(0, 0)
@@ -97,7 +102,6 @@ func _process(_delta: float) -> void:
 			if bounces >= prediction_max_bounces:
 				break
 			
-		
 		#Re-enable collision upon exiting the loop
 		if previous_collision_point != null and previous_collision_point is TileMapLayer:
 				previous_collision_point.tile_set.set_physics_layer_collision_layer(1, 1)
@@ -120,10 +124,15 @@ func _physics_process(delta: float) -> void:
 	# Bounce when it collides with an object
 	if collision:
 		ball_direction = velocity.bounce(collision.get_normal()).normalized()
+	
+	# Rotation
+	sprite_2d.rotation_degrees += rotation_speed
 		
 	# Lose speed over time
 	if speed > 0:
 		speed -= speed_loss_over_time * delta
+	if rotation_speed > 0:
+		rotation_speed -= rotation_speed_loss
 	
 func on_player_turn_start():
 	can_throw = true
@@ -152,16 +161,22 @@ func launch_ball(direction: Vector2, force: float):
 	
 	ball_direction = direction
 	speed = force
+	rotation_speed = base_rotation_speed
+	sprite_2d.play("roll")
 
 func is_stationary() -> bool:
 	# Check if speed is lower than the threshold
 	return speed < velocity_threshold
 
-#Upon hitting a pin, trigger their 'touchBall' function
+# Upon hitting a pin, trigger their 'touchBall' function
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area is Pin:
 		area.touchBall()
 		
-
+# Specifically for shielded enemy. Kinda jank but oh well
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	if body is DeflectArea:
+		body.touchDeflect()
+		
 		
 signal ball_stopped()

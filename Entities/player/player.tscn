@@ -149,10 +149,10 @@ position = Vector2(0.125, 0.4375)
 shape = SubResource("RectangleShape2D_vjb5u")
 
 [node name="transition" type="Node2D" parent="."]
+visible = false
 z_index = 10
 
 [node name="ColorRect" type="ColorRect" parent="transition"]
-visible = false
 offset_left = -276.0
 offset_top = -163.0
 offset_right = 314.0
