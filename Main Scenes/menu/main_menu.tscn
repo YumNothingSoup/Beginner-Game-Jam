@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://de6ptabqk6x6t"]
+[gd_scene load_steps=4 format=3 uid="uid://de6ptabqk6x6t"]
 
 [ext_resource type="Script" path="res://Main Scenes/menu/main_menu.gd" id="1_xty0p"]
+[ext_resource type="PackedScene" uid="uid://d0ptv7n27s8tn" path="res://Main Scenes/menu/menu_background.tscn" id="2_dsgc1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hjf8m"]
 font_size = 48
@@ -55,6 +56,8 @@ text = "Settings
 layout_mode = 2
 text = "Exit
 "
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_dsgc1")]
 
 [connection signal="pressed" from="VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]
