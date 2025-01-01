@@ -965,8 +965,9 @@ shape = SubResource("RectangleShape2D_6oni3")
 [node name="PlayerPreventationArea" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerPreventationArea"]
-position = Vector2(10, 9)
-polygon = PackedVector2Array(449, 152, 324, 276, 332, 438, 436, 557, 660, 557, 764, 440, 766, 296, 660, 161)
+position = Vector2(-24, -16)
+scale = Vector2(1.1125, 1.0375)
+polygon = PackedVector2Array(302.022, 354.699, 524.944, 586.024, 755.056, 354.699, 524.944, 123.373)
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_4x8qw")]
 unique_name_in_owner = true
