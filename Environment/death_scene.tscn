@@ -1,78 +1,154 @@
-[gd_scene load_steps=8 format=3 uid="uid://bfy2xbpivgb7j"]
+[gd_scene load_steps=10 format=3 uid="uid://bfy2xbpivgb7j"]
 
 [ext_resource type="Script" path="res://Environment/death_scene.gd" id="1_pnodc"]
-[ext_resource type="Texture2D" uid="uid://ccamus84b3sy7" path="res://other_images/restart background.png" id="2_nrh34"]
+[ext_resource type="Texture2D" uid="uid://ccamus84b3sy7" path="res://other_images/restart background.png" id="2_48bwy"]
+[ext_resource type="PackedScene" uid="uid://dgygkbtm0burn" path="res://addons/quiver_leaderboards/leaderboard_ui.tscn" id="3_o01k2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wjeym"]
+bg_color = Color(0.376471, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_w1uel"]
+
+[sub_resource type="Theme" id="Theme_a4stx"]
 
 [sub_resource type="SystemFont" id="SystemFont_mncpp"]
+font_names = PackedStringArray("Arial Rounded MT")
 font_weight = 500
 font_stretch = 150
 
 [sub_resource type="LabelSettings" id="LabelSettings_bcseg"]
 font = SubResource("SystemFont_mncpp")
-font_color = Color(0, 0, 0, 1)
-outline_size = 1
-outline_color = Color(0.355775, 0, 0.117244, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_w1uel"]
-
-[sub_resource type="SystemFont" id="SystemFont_vqpwf"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_ou53e"]
-font = SubResource("SystemFont_vqpwf")
-font_size = 24
-font_color = Color(0, 0, 0, 1)
-outline_size = 1
+font_size = 35
+outline_size = 10
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_kcwb3"]
+font_names = PackedStringArray("Arial Rounded MT")
 
 [node name="Death_scene" type="Node2D"]
 script = ExtResource("1_pnodc")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_top = 48.0
-offset_right = 425.0
-offset_bottom = 314.0
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -32.0
+offset_right = 1294.0
+offset_bottom = 661.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_48bwy")
 
-[node name="TextureButton" type="TextureButton" parent="."]
-offset_left = 144.0
-offset_top = 190.0
-offset_right = 240.0
-offset_bottom = 254.0
-texture_normal = ExtResource("2_nrh34")
+[node name="Panel" type="Panel" parent="."]
+offset_right = 606.0
+offset_bottom = 650.0
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(203, 169)
-zoom = Vector2(3, 3)
+[node name="TextureButton" type="TextureButton" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = 78.0
+offset_right = 29.0
+offset_bottom = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
 
-[node name="Label" type="Label" parent="."]
-offset_left = 112.0
-offset_top = 71.0
-offset_right = 280.0
-offset_bottom = 94.0
-text = "well done you scored:"
-label_settings = SubResource("LabelSettings_bcseg")
-
-[node name="Label4" type="Label" parent="."]
-offset_left = 163.0
-offset_top = 212.0
-offset_right = 331.0
-offset_bottom = 235.0
-text = "restart"
+[node name="RESTART" type="Label" parent="Panel/TextureButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -7.33335
+offset_top = 2.66668
+offset_right = 12.6666
+offset_bottom = -14.3333
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_wjeym")
+text = "RESTART"
 label_settings = SubResource("LabelSettings_w1uel")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Label3" type="Label" parent="."]
-offset_left = 163.0
-offset_top = 145.0
-offset_right = 331.0
-offset_bottom = 168.0
-text = "Points!"
+[node name="YOURSOUL" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -295.0
+offset_top = 56.0
+offset_right = 295.0
+offset_bottom = 153.0
+grow_horizontal = 2
+theme = SubResource("Theme_a4stx")
+text = "YOUR SOUL WAS CONSUMED
+(it wasn't that good)"
 label_settings = SubResource("LabelSettings_bcseg")
+horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="."]
-offset_left = 179.0
-offset_top = 97.0
-offset_right = 262.0
-offset_bottom = 143.0
-label_settings = SubResource("LabelSettings_ou53e")
-justification_flags = 161
+[node name="ScoreLabel" type="RichTextLabel" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 14.0
+offset_top = -93.0
+offset_right = -3.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = SubResource("SystemFont_kcwb3")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center]Yes points  rfrf f f h huo hi oh oih ioh o i oi"
+fit_content = true
+scroll_active = false
+tab_size = 6
+text_direction = 1
 
-[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[node name="LeaderboardPanel" type="Panel" parent="."]
+offset_left = 606.0
+offset_top = -3.0
+offset_right = 1151.0
+offset_bottom = 650.0
+
+[node name="LeaderboardUI" parent="LeaderboardPanel" instance=ExtResource("3_o01k2")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 1.0
+offset_top = 4.0
+offset_bottom = -66.0
+leaderboard_id = "indie-game-dev-winte-normal-difficul-EZQl"
+current_player_highlight_color = Color(0.109804, 0.286275, 0.443137, 1)
+
+[node name="LineEdit" type="LineEdit" parent="LeaderboardPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 586.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "Enter a name to submit your score to the leaderboard"
+clear_button_enabled = true
+
+[connection signal="pressed" from="Panel/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="text_submitted" from="LeaderboardPanel/LineEdit" to="." method="_on_line_edit_text_submitted"]
