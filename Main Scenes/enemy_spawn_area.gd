@@ -36,8 +36,6 @@ func on_player_turn_start():
 	
 	if enemy_container.get_children().is_empty():
 		Events.player_turn_started.emit()
-	if enemy_container.get_children().filter(is_enemy).is_empty():
-		Events.player_turn_started.emit()
 			
 func is_enemy(item):
 	return item is Pin

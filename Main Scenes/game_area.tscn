@@ -911,11 +911,11 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(1, 0.694118, 0.501961, 1)
 
-[sub_resource type="Theme" id="Theme_rqm3a"]
-
 [sub_resource type="SystemFont" id="SystemFont_kybf6"]
 font_names = PackedStringArray("Arial Rounded MT")
 subpixel_positioning = 0
+
+[sub_resource type="Theme" id="Theme_rqm3a"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_7aw1g")
@@ -1000,8 +1000,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 4.0
-offset_right = 4.0
+offset_left = 2.0
+offset_right = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 15
@@ -1010,7 +1010,6 @@ script = ExtResource("10_p03li")
 
 [node name="SCORE" type="Label" parent="UI/Panel/Scores"]
 layout_mode = 2
-theme = SubResource("Theme_rqm3a")
 theme_override_colors/font_color = Color(1, 0.721569, 0.4, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 5
