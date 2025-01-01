@@ -48,7 +48,7 @@ text = "Easy"
 
 [node name="Medium" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-text = "Medium"
+text = "Normal"
 
 [node name="Hard" type="Button" parent="HBoxContainer"]
 layout_mode = 2
