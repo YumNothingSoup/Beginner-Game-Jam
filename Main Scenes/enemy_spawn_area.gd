@@ -2,7 +2,11 @@ extends Area2D
 
 const SPAWN_MARKER = preload("res://UI/spawn_marker.tscn")
 
+# Basic enemy scene
 @export var enemy_scene = preload("res://Entities/enemies/enemy.tscn")
+
+# Insert special enemy types here
+@export var special_enemy_pool: SpecialEnemyPool
 
 @export var enemy_spawn_area: CollisionShape2D
 @export var player_preventation_area: Area2D
@@ -13,6 +17,8 @@ const SPAWN_MARKER = preload("res://UI/spawn_marker.tscn")
 @export var enemy_increment_turn_interval: int = 4
 @export var enemy_spawn_turn_interval: int = 2
 @export var enemy_count_incrementation_value: int = 1
+# 1 is always, 0 is never
+@export var special_enemy_chance: float = 0.1
 
 var turn_count: int = 0
 
@@ -28,6 +34,12 @@ func on_player_turn_start():
 		start_enemy_count += enemy_count_incrementation_value
 	if turn_count % enemy_spawn_turn_interval == 0:
 		spawn_enemies_next_turn()
+	
+	if enemy_container.get_children().is_empty():
+		Events.player_turn_started.emit()
+			
+func is_enemy(item):
+	return item is Pin
 		
 
 func assign_spawn_parameters():
@@ -43,14 +55,23 @@ func assign_spawn_parameters():
 
 func spawn_enemies():
 	for i in range(start_enemy_count):
-		var enemy_instance = enemy_scene.instantiate()
+		var enemy_instance
+		if randf() < special_enemy_chance:
+			enemy_instance = special_enemy_pool.enemy_pool.pick_random().instantiate()
+		else:
+			enemy_instance = enemy_scene.instantiate()
 		enemy_instance.position = get_random_point_in_area()
 		enemy_container.add_child(enemy_instance)
 
 func spawn_enemies_next_turn() -> void:
 	for i in range(start_enemy_count):
+		var enemy
+		if randf() < special_enemy_chance:
+			enemy = special_enemy_pool.enemy_pool.pick_random()
+		else:
+			enemy = enemy_scene
 		var marker = SPAWN_MARKER.instantiate()
-		marker.enemy_to_spawn = enemy_scene
+		marker.enemy_to_spawn = enemy
 		marker.position = get_random_point_in_area()
 		enemy_container.add_child(marker)
 

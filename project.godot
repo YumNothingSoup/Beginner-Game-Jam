@@ -20,6 +20,8 @@ config/icon="res://icon.svg"
 Events="*res://Global/Events.gd"
 GlobalData="*res://Global/GlobalData.gd"
 Enums="*res://Global/Enums.gd"
+Leaderboards="*res://addons/quiver_leaderboards/leaderboards.tscn"
+PlayerAccounts="*res://addons/quiver_player_accounts/player_accounts.tscn"
 
 [debug]
 
@@ -29,6 +31,10 @@ gdscript/warnings/unused_signal=0
 
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/quiver_leaderboards/plugin.cfg", "res://addons/quiver_player_accounts/plugin.cfg")
 
 [input]
 
@@ -77,6 +83,10 @@ move_down={
 2d_physics/layer_3="Bowling Ball"
 2d_physics/layer_4="Enemies"
 2d_physics/layer_5="PlayerHitbox"
+
+[quiver]
+
+general/auth_token="pGGZI7QVAYc850qg3RQI2TqlQFDzp7lhoNPHy0K7"
 
 [rendering]
 

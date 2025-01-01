@@ -1,42 +1,43 @@
-[gd_scene load_steps=13 format=3 uid="uid://bnhmd4i7ebnn6"]
+[gd_scene load_steps=15 format=3 uid="uid://bdgkod6g2w2r2"]
 
-[ext_resource type="Script" path="res://Entities/enemies/enemy.gd" id="1_7xn3k"]
-[ext_resource type="Texture2D" uid="uid://c0h41xvmyx2l8" path="res://Resources/pin-morphed-sprite-sheet.png" id="2_fik2w"]
-[ext_resource type="Texture2D" uid="uid://bx1x6rjw1xoxd" path="res://Resources/pin-standard-sprite-sheet.png" id="3_uul5b"]
+[ext_resource type="Script" path="res://Entities/enemies/ShieldEnemy/shield_enemy.gd" id="1_cn8d1"]
+[ext_resource type="Texture2D" uid="uid://c0h41xvmyx2l8" path="res://Resources/pin-morphed-sprite-sheet.png" id="2_b12hg"]
+[ext_resource type="Texture2D" uid="uid://bx1x6rjw1xoxd" path="res://Resources/pin-standard-sprite-sheet.png" id="3_fdt2n"]
+[ext_resource type="Script" path="res://Entities/enemies/ShieldEnemy/deflect_area.gd" id="6_awg0e"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wt7mw"]
-radius = 27.0
+radius = 28.0
 height = 80.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2dpjn"]
-atlas = ExtResource("2_fik2w")
+atlas = ExtResource("2_b12hg")
 region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5hdxn"]
-atlas = ExtResource("2_fik2w")
+atlas = ExtResource("2_b12hg")
 region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5rufq"]
-atlas = ExtResource("2_fik2w")
+atlas = ExtResource("2_b12hg")
 region = Rect2(256, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xcyvf"]
-atlas = ExtResource("3_uul5b")
+atlas = ExtResource("3_fdt2n")
 region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_encsa"]
-atlas = ExtResource("3_uul5b")
+atlas = ExtResource("3_fdt2n")
 region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ahwyx"]
-atlas = ExtResource("3_uul5b")
+atlas = ExtResource("3_fdt2n")
 region = Rect2(256, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jb5x3"]
-atlas = ExtResource("3_uul5b")
+atlas = ExtResource("3_fdt2n")
 region = Rect2(384, 0, 128, 128)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_k7aoo"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_7wbmy"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -70,21 +71,37 @@ animations = [{
 "speed": 3.0
 }]
 
-[node name="enemy" type="Area2D"]
-collision_layer = 8
-collision_mask = 20
-script = ExtResource("1_7xn3k")
-velocity = 60.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5igko"]
+size = Vector2(63.2533, 80.8574)
+
+[node name="ShieldEnemy" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_cn8d1")
+velocity = 40.0
+value = 2
 metadata/_edit_group_ = true
 
 [node name="enemyCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_wt7mw")
 
 [node name="enemyAnimatedGraphic" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.298039, 1, 1, 1)
 z_index = 2
 position = Vector2(3, 0)
 scale = Vector2(0.6, 0.6)
-sprite_frames = SubResource("SpriteFrames_k7aoo")
+sprite_frames = SubResource("SpriteFrames_7wbmy")
 animation = &"standard"
 autoplay = "standard"
-frame_progress = 0.576189
+
+[node name="DeflectArea" type="CharacterBody2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("6_awg0e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeflectArea"]
+position = Vector2(0.500002, 0.5)
+scale = Vector2(0.995996, 1.00176)
+shape = SubResource("RectangleShape2D_5igko")
+
+[connection signal="touched_ball" from="DeflectArea" to="." method="_on_deflect_area_touched_ball"]
