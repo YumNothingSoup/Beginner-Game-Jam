@@ -23,7 +23,7 @@ var combos: Dictionary = {
 		},
 		
 	"Combo4": {
-		"Text": "DELIVARY!",
+		"Text": "DELIVERY!",
 		"Multiplier": 4,
 		"Kills to Activate": 10
 		}
