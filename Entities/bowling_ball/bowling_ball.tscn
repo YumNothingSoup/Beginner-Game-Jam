@@ -1,25 +1,135 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwvl3fycobgck"]
+[gd_scene load_steps=20 format=3 uid="uid://bwvl3fycobgck"]
 
 [ext_resource type="Script" path="res://Entities/bowling_ball/bowling_ball.gd" id="1_2faiv"]
-[ext_resource type="Texture2D" uid="uid://d1q8i4r2fr311" path="res://icon.svg" id="2_trkma"]
+[ext_resource type="Texture2D" uid="uid://t6sx7fcn723" path="res://Resources/ball-static.png" id="2_vxk5n"]
+[ext_resource type="Texture2D" uid="uid://b6ayn7gbihst0" path="res://Resources/ball-speed-lines-sprite-sheet.png" id="3_bi8di"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kk63w"]
+atlas = ExtResource("3_bi8di")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4g7mm"]
+atlas = ExtResource("3_bi8di")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fksqt"]
+atlas = ExtResource("3_bi8di")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3khwi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kk63w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4g7mm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fksqt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="Curve" id="Curve_n4y8t"]
+_data = [Vector2(0, 0.285714), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wygtr"]
+curve = SubResource("Curve_n4y8t")
+
+[sub_resource type="Curve" id="Curve_0jhfp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.274725), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7is7o"]
+curve = SubResource("Curve_0jhfp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1iurq"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 50.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -100.0
+linear_accel_max = -100.0
+scale_min = 6.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_7is7o")
+alpha_curve = SubResource("CurveTexture_wygtr")
+
+[sub_resource type="Curve" id="Curve_k71nr"]
+_data = [Vector2(0.0133333, 0.571429), 0.0, 0.0, 0, 0, Vector2(0.98, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dsugx"]
+curve = SubResource("Curve_k71nr")
+
+[sub_resource type="Curve" id="Curve_f4kvt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.493333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ckljc"]
+curve = SubResource("Curve_f4kvt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k8467"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 70.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 60.0
+radial_accel_max = 120.0
+scale_min = 6.0
+scale_max = 12.0
+scale_curve = SubResource("CurveTexture_ckljc")
+alpha_curve = SubResource("CurveTexture_dsugx")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4yfcb"]
-radius = 23.0217
+radius = 24.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qk8ws"]
-radius = 23.0
+radius = 25.273
 
 [node name="BowlingBall" type="CharacterBody2D"]
+z_index = 3
 collision_layer = 4
-collision_mask = 9
+collision_mask = 41
 script = ExtResource("1_2faiv")
 throw_strength = 1500.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 visible = false
-scale = Vector2(0.333984, 0.333984)
-texture = ExtResource("2_trkma")
+position = Vector2(3, 5)
+scale = Vector2(0.579, 0.548)
+texture = ExtResource("2_vxk5n")
+
+[node name="SpeedLines" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0)
+z_index = 3
+scale = Vector2(0.9, 0.9)
+sprite_frames = SubResource("SpriteFrames_3khwi")
+autoplay = "default"
+frame_progress = 0.34901
+
+[node name="RollParticles" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_1iurq")
+lifetime = 1.5
+
+[node name="CollisionParticles" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_k8467")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
@@ -28,9 +138,10 @@ shape = SubResource("CircleShape2D_4yfcb")
 [node name="Hurtbox" type="Area2D" parent="."]
 unique_name_in_owner = true
 collision_layer = 0
-collision_mask = 8
+collision_mask = 40
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+scale = Vector2(0.993977, 1)
 shape = SubResource("CircleShape2D_qk8ws")
 
 [node name="PredictionRayCast" type="RayCast2D" parent="."]
@@ -38,6 +149,8 @@ unique_name_in_owner = true
 
 [node name="PredictionLine" type="Line2D" parent="."]
 unique_name_in_owner = true
+z_index = 1
 width = 8.0
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
