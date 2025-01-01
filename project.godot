@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Beginner-Game-Jam-Project"
-run/main_scene="res://Main Scenes/main_menu.tscn"
+run/main_scene="res://Main Scenes/menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Events="*res://Global/Events.gd"
 GlobalData="*res://Global/GlobalData.gd"
+Enums="*res://Global/Enums.gd"
 Leaderboards="*res://addons/quiver_leaderboards/leaderboards.tscn"
 PlayerAccounts="*res://addons/quiver_player_accounts/player_accounts.tscn"
 

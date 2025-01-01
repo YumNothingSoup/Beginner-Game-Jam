@@ -13,7 +13,7 @@ const SPAWN_MARKER = preload("res://UI/spawn_marker.tscn")
 
 @export var enemy_container: Node
 
-@export var start_enemy_count: int = 5
+@export var start_enemy_count: int = 8
 @export var enemy_increment_turn_interval: int = 4
 @export var enemy_spawn_turn_interval: int = 2
 @export var enemy_count_incrementation_value: int = 1
@@ -24,6 +24,7 @@ var turn_count: int = 0
 
 func _ready():
 	Events.player_turn_started.connect(on_player_turn_start)
+	assign_spawn_parameters()
 	spawn_enemies()
 
 func on_player_turn_start():
@@ -40,6 +41,18 @@ func on_player_turn_start():
 func is_enemy(item):
 	return item is Pin
 		
+
+func assign_spawn_parameters():
+	match GlobalData.selected_difficulty:
+		Enums.DIFFICULTY.MEDIUM:
+			start_enemy_count += 2
+			enemy_count_incrementation_value = 2
+		Enums.DIFFICULTY.HARD:
+			start_enemy_count += 3
+			enemy_count_incrementation_value = 3
+			enemy_increment_turn_interval = 2
+			enemy_spawn_turn_interval = 1
+
 func spawn_enemies():
 	for i in range(start_enemy_count):
 		var enemy_instance

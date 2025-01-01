@@ -1,7 +1,10 @@
 extends CharacterBody2D
+class_name Player
 
 @onready var animate: AnimatedSprite2D = $AnimatedSprite2D
 @onready var transition_animation: Node2D = $transition
+
+var is_dead: bool = false
 
 const speed = 300.0
 
@@ -23,6 +26,7 @@ func _physics_process(_delta):
 	
 #death func
 func Death():
+	is_dead = true
 	Engine.time_scale = 0.5
 	animate.play("death")
 	Events.player_died.emit()

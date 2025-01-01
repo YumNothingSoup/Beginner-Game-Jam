@@ -11,7 +11,7 @@ class_name BowlingBall
 @export var speed_loss_over_time: float = 200
 @export var rotation_speed_loss: float = 0.1
 
-@onready var player: CharacterBody2D = %Player
+@onready var player: Player = %Player
 
 # Collisions
 @onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
@@ -171,7 +171,8 @@ func handle_speed_lines():
 		)
 	
 func on_player_turn_start():
-	can_throw = true
+	if !player.is_dead:
+		can_throw = true
 	reset_ball()
 	
 # Resets the ball to the center and hides it
