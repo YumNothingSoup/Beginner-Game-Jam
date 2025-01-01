@@ -18,7 +18,7 @@ const SPAWN_MARKER = preload("res://UI/spawn_marker.tscn")
 @export var enemy_spawn_turn_interval: int = 2
 @export var enemy_count_incrementation_value: int = 1
 # 1 is always, 0 is never
-@export var special_enemy_chance: float = 0.5
+@export var special_enemy_chance: float = 0.1
 
 var turn_count: int = 0
 
@@ -33,6 +33,14 @@ func on_player_turn_start():
 		start_enemy_count += enemy_count_incrementation_value
 	if turn_count % enemy_spawn_turn_interval == 0:
 		spawn_enemies_next_turn()
+	
+	if enemy_container.get_children().is_empty():
+		Events.player_turn_started.emit()
+	if enemy_container.get_children().filter(is_enemy).is_empty():
+		Events.player_turn_started.emit()
+			
+func is_enemy(item):
+	return item is Pin
 		
 func spawn_enemies():
 	for i in range(start_enemy_count):

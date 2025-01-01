@@ -18,7 +18,11 @@ class_name BowlingBall
 @onready var hurtbox: Area2D = %Hurtbox
 
 # Sprite (to hide the ball)
-@onready var sprite_2d: AnimatedSprite2D = %Sprite2D
+@onready var sprite_2d: Sprite2D = %Sprite2D
+@onready var speed_lines: AnimatedSprite2D = %SpeedLines
+
+@onready var roll_particles: GPUParticles2D = %RollParticles
+@onready var collision_particles: GPUParticles2D = %CollisionParticles
 
 @onready var prediction_ray: RayCast2D = %PredictionRayCast
 @onready var prediction_line: Line2D = %PredictionLine
@@ -34,6 +38,13 @@ var rotation_speed: float = 0
 
 var has_stopped = true
 var can_throw = true
+
+# Fades speed lines when ball is slow enough
+var is_fast: bool:
+	set(value):
+		is_fast = value
+		handle_speed_lines()
+var speed_tween: Tween
 
 func _ready() -> void:
 	Events.player_turn_started.connect(on_player_turn_start)
@@ -124,6 +135,8 @@ func _physics_process(delta: float) -> void:
 	# Bounce when it collides with an object
 	if collision:
 		ball_direction = velocity.bounce(collision.get_normal()).normalized()
+		collision_particles.restart()
+		collision_particles.emitting = true
 	
 	# Rotation
 	sprite_2d.rotation_degrees += rotation_speed
@@ -133,6 +146,29 @@ func _physics_process(delta: float) -> void:
 		speed -= speed_loss_over_time * delta
 	if rotation_speed > 0:
 		rotation_speed -= rotation_speed_loss
+		
+	if speed < 500:
+		is_fast = false
+	else:
+		is_fast = true
+	
+	speed_lines.rotation = ball_direction.angle()
+	
+func handle_speed_lines():
+	if speed_tween != null:
+		if speed_tween.is_running():
+			speed_tween.kill()
+	
+	if is_fast:
+		speed_lines.self_modulate = Color(1, 1, 1, 0.6)
+		roll_particles.emitting = true
+	else:
+		speed_tween = create_tween()
+		speed_tween.tween_property(speed_lines, "self_modulate", Color(1, 1, 1, 0), 0.65)
+		get_tree().create_timer(0.5).timeout.connect(
+			func():
+				roll_particles.emitting = false
+		)
 	
 func on_player_turn_start():
 	can_throw = true
@@ -162,7 +198,6 @@ func launch_ball(direction: Vector2, force: float):
 	ball_direction = direction
 	speed = force
 	rotation_speed = base_rotation_speed
-	sprite_2d.play("roll")
 
 func is_stationary() -> bool:
 	# Check if speed is lower than the threshold
