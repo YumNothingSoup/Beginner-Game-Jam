@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://bdgkod6g2w2r2"]
+[gd_scene load_steps=16 format=3 uid="uid://bdgkod6g2w2r2"]
 
 [ext_resource type="Script" path="res://Entities/enemies/ShieldEnemy/shield_enemy.gd" id="1_cn8d1"]
 [ext_resource type="Texture2D" uid="uid://c0h41xvmyx2l8" path="res://Resources/pin-morphed-sprite-sheet.png" id="2_b12hg"]
 [ext_resource type="Texture2D" uid="uid://bx1x6rjw1xoxd" path="res://Resources/pin-standard-sprite-sheet.png" id="3_fdt2n"]
+[ext_resource type="Texture2D" uid="uid://cejfba31rlrs" path="res://Resources/shield.png" id="5_54lky"]
 [ext_resource type="Script" path="res://Entities/enemies/ShieldEnemy/deflect_area.gd" id="6_awg0e"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wt7mw"]
@@ -72,21 +73,20 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5igko"]
-size = Vector2(63.2533, 80.8574)
+size = Vector2(71.2854, 90.8401)
 
 [node name="ShieldEnemy" type="Area2D"]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_cn8d1")
 velocity = 40.0
-value = 2
+value = 15
 metadata/_edit_group_ = true
 
 [node name="enemyCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_wt7mw")
 
 [node name="enemyAnimatedGraphic" type="AnimatedSprite2D" parent="."]
-self_modulate = Color(0.298039, 1, 1, 1)
 z_index = 2
 position = Vector2(3, 0)
 scale = Vector2(0.6, 0.6)
@@ -99,8 +99,13 @@ collision_layer = 32
 collision_mask = 0
 script = ExtResource("6_awg0e")
 
+[node name="Sprite2D" type="Sprite2D" parent="DeflectArea"]
+position = Vector2(0.500003, 1.5)
+scale = Vector2(3.78125, 3.40625)
+texture = ExtResource("5_54lky")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeflectArea"]
-position = Vector2(0.500002, 0.5)
+position = Vector2(1.5, 1.5)
 scale = Vector2(0.995996, 1.00176)
 shape = SubResource("RectangleShape2D_5igko")
 

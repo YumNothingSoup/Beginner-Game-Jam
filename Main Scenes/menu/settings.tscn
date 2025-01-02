@@ -70,20 +70,25 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Label" type="Label" parent="Panel/TabContainer/Cotrols"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Aim                                                                  |   mouse pointer"
-
 [node name="Label2" type="Label" parent="Panel/TabContainer/Cotrols"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Movement (only for the starting area)    |            WASD"
 
+[node name="Label" type="Label" parent="Panel/TabContainer/Cotrols"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Aim                                                                  |   Hold Down Left Mouse"
+
 [node name="Label3" type="Label" parent="Panel/TabContainer/Cotrols"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "Bowl                                                                |   left mouse click"
+text = "Throw Ball                                                      |   Release Left Mouse"
+
+[node name="Label4" type="Label" parent="Panel/TabContainer/Cotrols"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Cancel Aim                                                     |   Right Mouse"
 
 [node name="Rules!" type="ColorRect" parent="Panel/TabContainer"]
 layout_mode = 2
@@ -110,6 +115,9 @@ offset_top = 593.0
 offset_right = 186.0
 offset_bottom = 638.0
 text = "Back <--"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(580, 322)
 
 [connection signal="value_changed" from="Panel/TabContainer/Audio/VBoxContainer/Music" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="Panel/TabContainer/Audio/VBoxContainer/SFX" to="." method="_on_sfx_slider_value_changed"]
