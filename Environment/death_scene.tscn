@@ -1,0 +1,159 @@
+[gd_scene load_steps=12 format=3 uid="uid://bfy2xbpivgb7j"]
+
+[ext_resource type="Script" path="res://Environment/death_scene.gd" id="1_pnodc"]
+[ext_resource type="Texture2D" uid="uid://ccamus84b3sy7" path="res://other_images/restart background.png" id="2_48bwy"]
+[ext_resource type="StyleBox" uid="uid://esy5gfotjiq4" path="res://Main Scenes/menu/menu_button_normal.tres" id="3_7b5bb"]
+[ext_resource type="PackedScene" uid="uid://dgygkbtm0burn" path="res://addons/quiver_leaderboards/leaderboard_ui.tscn" id="3_o01k2"]
+[ext_resource type="StyleBox" uid="uid://bkvenev8asqbw" path="res://Main Scenes/menu/menu_button_hover.tres" id="4_ryqgi"]
+
+[sub_resource type="SystemFont" id="SystemFont_ty3q0"]
+font_names = PackedStringArray("Arial Rounded MT")
+
+[sub_resource type="SystemFont" id="SystemFont_mqbhg"]
+font_names = PackedStringArray("Arial Rounded MT")
+
+[sub_resource type="Theme" id="Theme_a4stx"]
+
+[sub_resource type="SystemFont" id="SystemFont_mncpp"]
+font_names = PackedStringArray("Arial Rounded MT")
+font_weight = 500
+font_stretch = 150
+
+[sub_resource type="LabelSettings" id="LabelSettings_bcseg"]
+font = SubResource("SystemFont_mncpp")
+font_size = 35
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_kcwb3"]
+font_names = PackedStringArray("Arial Rounded MT")
+
+[node name="Death_scene" type="Node2D"]
+script = ExtResource("1_pnodc")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -32.0
+offset_right = 1294.0
+offset_bottom = 661.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_48bwy")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 606.0
+offset_bottom = 650.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.5
+offset_top = 105.0
+offset_right = 186.5
+offset_bottom = 166.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 70
+
+[node name="TextureButton" type="Button" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_ty3q0")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = ExtResource("3_7b5bb")
+theme_override_styles/hover_pressed = ExtResource("4_ryqgi")
+theme_override_styles/hover = ExtResource("4_ryqgi")
+theme_override_styles/pressed = ExtResource("3_7b5bb")
+theme_override_styles/normal = ExtResource("3_7b5bb")
+text = "RESTART"
+
+[node name="QuitToMenu" type="Button" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_mqbhg")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = ExtResource("3_7b5bb")
+theme_override_styles/hover_pressed = ExtResource("4_ryqgi")
+theme_override_styles/hover = ExtResource("4_ryqgi")
+theme_override_styles/pressed = ExtResource("3_7b5bb")
+theme_override_styles/normal = ExtResource("3_7b5bb")
+text = "QUIT"
+
+[node name="YOURSOUL" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -295.0
+offset_top = 56.0
+offset_right = 295.0
+offset_bottom = 153.0
+grow_horizontal = 2
+theme = SubResource("Theme_a4stx")
+text = "YOUR SOUL WAS CONSUMED
+(it wasn't that good)"
+label_settings = SubResource("LabelSettings_bcseg")
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="RichTextLabel" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 14.0
+offset_top = -93.0
+offset_right = -3.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = SubResource("SystemFont_kcwb3")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center]Yes points  rfrf f f h huo hi oh oih ioh o i oi"
+fit_content = true
+scroll_active = false
+tab_size = 6
+text_direction = 1
+
+[node name="LeaderboardPanel" type="Panel" parent="."]
+offset_left = 606.0
+offset_top = -3.0
+offset_right = 1151.0
+offset_bottom = 650.0
+
+[node name="LeaderboardUI" parent="LeaderboardPanel" instance=ExtResource("3_o01k2")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 1.0
+offset_top = 4.0
+offset_bottom = -66.0
+current_player_highlight_color = Color(0.109804, 0.286275, 0.443137, 1)
+
+[node name="LineEdit" type="LineEdit" parent="LeaderboardPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 586.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "Enter a name to submit your score to the leaderboard"
+clear_button_enabled = true
+
+[connection signal="pressed" from="Panel/HBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/QuitToMenu" to="." method="_on_quit_to_menu_pressed"]
+[connection signal="text_submitted" from="LeaderboardPanel/LineEdit" to="." method="_on_line_edit_text_submitted"]

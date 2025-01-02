@@ -1,9 +1,24 @@
 extends Node
 
-var score: int = 0
+var score: int = 0:
+	set(value):
+		score = value
+		if score > high_score:
+			high_score = score
+var high_score: int = 0
+
+var selected_difficulty: Enums.DIFFICULTY
+
+# So people don't submit their scores multiple times
+var has_submitted: bool = false
+
+var skip_cutscene: bool = false
 
 func _ready() -> void:
-	Events.player_died.connect(on_player_death)
-
-func on_player_death():
+	Events.game_start.connect(on_game_start)
+	
+func on_game_start():
+	if score > high_score:
+		high_score = score
 	score = 0
+	has_submitted = false

@@ -1,0 +1,240 @@
+[gd_scene load_steps=21 format=3 uid="uid://bei8n7nh6igyr"]
+
+[ext_resource type="Script" path="res://Entities/enemies/dollEnemy/nesteddoll_enenmy.gd" id="1_p610o"]
+[ext_resource type="Texture2D" uid="uid://c0h41xvmyx2l8" path="res://Resources/pin-morphed-sprite-sheet.png" id="2_4rlv4"]
+[ext_resource type="Texture2D" uid="uid://bx1x6rjw1xoxd" path="res://Resources/pin-standard-sprite-sheet.png" id="3_0msjx"]
+[ext_resource type="AudioStream" uid="uid://bis3vahdvhxv7" path="res://SFX/coin_low.wav" id="4_p4e8t"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_emtqb"]
+radius = 43.0
+height = 162.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dpjn"]
+atlas = ExtResource("2_4rlv4")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hdxn"]
+atlas = ExtResource("2_4rlv4")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rufq"]
+atlas = ExtResource("2_4rlv4")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcyvf"]
+atlas = ExtResource("3_0msjx")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_encsa"]
+atlas = ExtResource("3_0msjx")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahwyx"]
+atlas = ExtResource("3_0msjx")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jb5x3"]
+atlas = ExtResource("3_0msjx")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oqwhl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dpjn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hdxn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rufq")
+}],
+"loop": true,
+"name": &"morphed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcyvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_encsa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahwyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jb5x3")
+}],
+"loop": true,
+"name": &"standard",
+"speed": 3.0
+}]
+
+[sub_resource type="Animation" id="Animation_vca83"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enemyAnimatedGraphic:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.27344, 1.18359)]
+}
+
+[sub_resource type="Animation" id="Animation_ilr85"]
+resource_name = "small_1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enemyAnimatedGraphic:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.27344, 1.18359), Vector2(0.98047, 0.85742)]
+}
+
+[sub_resource type="Animation" id="Animation_hbbxo"]
+resource_name = "small_2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enemyAnimatedGraphic:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.98047, 0.85742), Vector2(0.5, 0.437)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_epuub"]
+_data = {
+"RESET": SubResource("Animation_vca83"),
+"small_1": SubResource("Animation_ilr85"),
+"small_2": SubResource("Animation_hbbxo")
+}
+
+[sub_resource type="Animation" id="Animation_g0uh5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enemyAnimatedGraphic:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("enemyAnimatedGraphic:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("enemyAnimatedGraphic:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_m8kd2"]
+resource_name = "death_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enemyAnimatedGraphic:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(3, 0), Vector2(3, -60), Vector2(3, 100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("enemyAnimatedGraphic:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.366667, 0.866667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.670588), Color(1, 1, 1, 0.670588), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("enemyAnimatedGraphic:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.866667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gfb4m"]
+_data = {
+"RESET": SubResource("Animation_g0uh5"),
+"death_anim": SubResource("Animation_m8kd2")
+}
+
+[node name="Doll_enemy" type="Area2D"]
+collision_layer = 8
+collision_mask = 20
+script = ExtResource("1_p610o")
+value = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 0)
+shape = SubResource("CapsuleShape2D_emtqb")
+
+[node name="enemyAnimatedGraphic" type="AnimatedSprite2D" parent="."]
+z_index = 2
+position = Vector2(3, 0)
+scale = Vector2(1.27344, 1.18359)
+sprite_frames = SubResource("SpriteFrames_oqwhl")
+animation = &"standard"
+autoplay = "standard"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_epuub")
+}
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_p4e8t")
+bus = &"SFX"
+
+[node name="DeathAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gfb4m")
+}

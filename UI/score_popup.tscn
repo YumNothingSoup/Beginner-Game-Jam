@@ -1,0 +1,158 @@
+[gd_scene load_steps=7 format=3 uid="uid://d4mr2rvuyvi0v"]
+
+[ext_resource type="Script" path="res://UI/score_popup.gd" id="1_vx37l"]
+
+[sub_resource type="SystemFont" id="SystemFont_hkwb1"]
+font_names = PackedStringArray("Arial Rounded MT")
+subpixel_positioning = 0
+
+[sub_resource type="Animation" id="Animation_7cevy"]
+resource_name = "ComboPopup"
+length = 2.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.35, 2),
+"transitions": PackedFloat32Array(1, 1.41421, 4.14106, 1.07177),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -35), Vector2(0, -30), Vector2(0, -30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.6, 2),
+"transitions": PackedFloat32Array(6.9644, 0.637282, 0.965936, 0.392292, 1.1487, 0.392292, 1.1487, 1.03526, 1),
+"update": 0,
+"values": [Color(0.0862745, 0.827451, 1, 1), Color(1, 1, 1, 1), Color(0.0862745, 0.827451, 1, 1), Color(1, 1, 1, 1), Color(0.0862745, 0.827451, 1, 1), Color(1, 1, 1, 1), Color(0.0862745, 0.827451, 1, 1), Color(0.0862745, 0.827451, 1, 1), Color(0.0862745, 0.827451, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:theme_override_font_sizes/font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [35]
+}
+
+[sub_resource type="Animation" id="Animation_1s8w2"]
+resource_name = "PopupAnim"
+length = 1.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.2, 0.95, 1.05, 1.2),
+"transitions": PackedFloat32Array(1, 1.41421, 4.14106, 1.07177, 1.56917, 1.46409),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -15), Vector2(0, -10), Vector2(0, -10), Vector2(0, -12), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05, 0.9, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:theme_override_font_sizes/font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [35]
+}
+
+[sub_resource type="Animation" id="Animation_u21fy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:theme_override_font_sizes/font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [25]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fa4a2"]
+_data = {
+"ComboPopup": SubResource("Animation_7cevy"),
+"PopupAnim": SubResource("Animation_1s8w2"),
+"RESET": SubResource("Animation_u21fy")
+}
+
+[node name="PopupContainer" type="Node2D"]
+script = ExtResource("1_vx37l")
+
+[node name="ScorePopup" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 42.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("SystemFont_hkwb1")
+theme_override_font_sizes/font_size = 25
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../ScorePopup")
+libraries = {
+"": SubResource("AnimationLibrary_fa4a2")
+}
