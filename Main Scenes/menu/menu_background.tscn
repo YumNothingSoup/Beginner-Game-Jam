@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0ptv7n27s8tn"]
+
+[ext_resource type="Texture2D" uid="uid://cpfd7nprdbuc7" path="res://Resources/bowling_placeholder_background.png" id="1_7p2d5"]
+
+[node name="MenuBackground" type="ParallaxBackground"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1137.0
+offset_top = -612.0
+offset_right = 2319.0
+offset_bottom = 1333.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7p2d5")
+stretch_mode = 1

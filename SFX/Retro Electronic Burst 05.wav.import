@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b8mph30fn1rc0"
+path="res://.godot/imported/Retro Electronic Burst 05.wav-208523fbad1b997b91a4ca4ba19d3567.sample"
+
+[deps]
+
+source_file="res://SFX/Retro Electronic Burst 05.wav"
+dest_files=["res://.godot/imported/Retro Electronic Burst 05.wav-208523fbad1b997b91a4ca4ba19d3567.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

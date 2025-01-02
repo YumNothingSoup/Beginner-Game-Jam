@@ -1,6 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbf5d1fnt08pi"]
+[gd_scene load_steps=7 format=3 uid="uid://cbf5d1fnt08pi"]
 
 [ext_resource type="Script" path="res://scene_not_main/pause_menu.gd" id="1_xblxu"]
+[ext_resource type="StyleBox" uid="uid://esy5gfotjiq4" path="res://Main Scenes/menu/menu_button_normal.tres" id="2_jx3mf"]
+[ext_resource type="StyleBox" uid="uid://bkvenev8asqbw" path="res://Main Scenes/menu/menu_button_hover.tres" id="3_58exe"]
+
+[sub_resource type="SystemFont" id="SystemFont_8b4rr"]
+font_names = PackedStringArray("Arial Rounded MT")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_a82qr"]
+font_names = PackedStringArray("Arial Rounded MT")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_1pb1j"]
+font_names = PackedStringArray("Arial Rounded MT")
+subpixel_positioning = 0
 
 [node name="pause_menu" type="Control"]
 process_mode = 3
@@ -30,16 +44,37 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="Resume" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
-text = "resume"
+theme_override_fonts/font = SubResource("SystemFont_8b4rr")
+theme_override_styles/focus = ExtResource("2_jx3mf")
+theme_override_styles/hover_pressed = ExtResource("3_58exe")
+theme_override_styles/hover = ExtResource("3_58exe")
+theme_override_styles/pressed = ExtResource("2_jx3mf")
+theme_override_styles/normal = ExtResource("2_jx3mf")
+text = "RESUME"
 
 [node name="Restart" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-text = "restart"
+theme_override_fonts/font = SubResource("SystemFont_a82qr")
+theme_override_styles/focus = ExtResource("2_jx3mf")
+theme_override_styles/hover_pressed = ExtResource("3_58exe")
+theme_override_styles/hover = ExtResource("3_58exe")
+theme_override_styles/pressed = ExtResource("2_jx3mf")
+theme_override_styles/normal = ExtResource("2_jx3mf")
+text = "RESTART"
 
 [node name="Quit" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-text = "quit"
+theme_override_fonts/font = SubResource("SystemFont_1pb1j")
+theme_override_styles/focus = ExtResource("2_jx3mf")
+theme_override_styles/hover_pressed = ExtResource("3_58exe")
+theme_override_styles/hover = ExtResource("3_58exe")
+theme_override_styles/pressed = ExtResource("2_jx3mf")
+theme_override_styles/normal = ExtResource("2_jx3mf")
+text = "QUIT"
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]

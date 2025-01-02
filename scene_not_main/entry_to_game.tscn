@@ -1,54 +1,167 @@
-[gd_scene load_steps=3 format=3 uid="uid://cm0miaal8mlup"]
+[gd_scene load_steps=19 format=3 uid="uid://cm0miaal8mlup"]
 
+[ext_resource type="Texture2D" uid="uid://cepkny3cfws77" path="res://Resources/concrete.png" id="1_6h3uk"]
+[ext_resource type="Script" path="res://scene_not_main/entry_to_game.gd" id="1_votof"]
+[ext_resource type="PackedScene" uid="uid://cbf5d1fnt08pi" path="res://scene_not_main/pause_menu.tscn" id="2_1c4fb"]
 [ext_resource type="PackedScene" uid="uid://dvu67lgff14pj" path="res://Entities/player/player.tscn" id="2_gllha"]
+[ext_resource type="Texture2D" uid="uid://bxypk8hxkqgf" path="res://Resources/hellhole.png" id="2_j1qb3"]
+[ext_resource type="Texture2D" uid="uid://b0cey7jjyn3np" path="res://other_images/Screenshot_2025-01-03_004657-1.png.png" id="5_iscxa"]
+[ext_resource type="Texture2D" uid="uid://36a7rn5qjofw" path="res://other_images/shadow.png" id="5_lpyov"]
+[ext_resource type="Texture2D" uid="uid://byd8jhq7181d" path="res://other_images/Screenshot_2025-01-02_17.34.11-removebg-preview.png" id="7_r4sjr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5rtpk"]
-size = Vector2(65, 46)
+size = Vector2(177, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ctkvs"]
+size = Vector2(35, 661)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5gnai"]
+size = Vector2(1144, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5ghr"]
+size = Vector2(28.5, 651)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hcxje"]
+size = Vector2(1147.88, 21.75)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x5cwn"]
+bg_color = Color(0.58834, 0.40593, 0.244045, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.909804, 0.690196, 0.498039, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_qdrwq"]
+font_names = PackedStringArray("Arial Rounded MT")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e1hjl"]
+radius = 63.0714
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqwby"]
+size = Vector2(64, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p2xk8"]
+size = Vector2(95, 71)
 
 [node name="entry_to_game" type="Node2D"]
+script = ExtResource("1_votof")
 
-[node name="ground" type="ColorRect" parent="."]
-offset_left = -24808.0
-offset_top = -19609.0
-offset_right = -9610.0
-offset_bottom = -18413.0
-scale = Vector2(4.09912, 752.075)
-color = Color(0.262617, 0.635304, 0.346169, 1)
-
-[node name="entry_point" type="ColorRect" parent="."]
-offset_left = 267.0
-offset_right = 319.0
-offset_bottom = 48.0
-color = Color(0.407374, 0.407374, 0.407374, 1)
-
-[node name="Label" type="Label" parent="."]
-offset_left = 273.0
-offset_top = 11.0
-offset_right = 315.0
-offset_bottom = 34.0
-text = "enter"
-
-[node name="Label2" type="Label" parent="."]
-offset_left = 339.0
-offset_top = 18.0
-offset_right = 379.0
-offset_bottom = 41.0
-text = "it is ment to be a hole"
-
-[node name="collitions" type="Node2D" parent="."]
+[node name="Ground" type="TextureRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_6h3uk")
+stretch_mode = 1
 
 [node name="entry_area" type="Area2D" parent="."]
+position = Vector2(584, 213)
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="entry_area"]
-position = Vector2(296.5, 25)
+position = Vector2(9.5, 72.5)
 shape = SubResource("RectangleShape2D_5rtpk")
 
-[node name="player" parent="." instance=ExtResource("2_gllha")]
-position = Vector2(285, 189)
+[node name="Sprite2D" type="Sprite2D" parent="entry_area"]
+position = Vector2(10, 57)
+scale = Vector2(6.15625, 5.19531)
+texture = ExtResource("2_j1qb3")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(286, 191)
+[node name="player" parent="." instance=ExtResource("2_gllha")]
+position = Vector2(593, 526)
+collision_mask = 1
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="pause_menu" parent="UI" instance=ExtResource("2_1c4fb")]
+visible = false
+
+[node name="Boundaries" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(7.5, 320.5)
+shape = SubResource("RectangleShape2D_ctkvs")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(573, 0)
+shape = SubResource("RectangleShape2D_5gnai")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(1138.25, 323.5)
+shape = SubResource("RectangleShape2D_g5ghr")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(575.063, 632.875)
+shape = SubResource("RectangleShape2D_hcxje")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(431, 280)
+scale = Vector2(3.17187, 1.53125)
+texture = ExtResource("5_lpyov")
+
+[node name="Shadow2" type="Sprite2D" parent="."]
+position = Vector2(678, 440)
+scale = Vector2(3.17187, 1.53125)
+texture = ExtResource("5_lpyov")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(676, 394)
+
+[node name="WritingSign" type="Area2D" parent="StaticBody2D"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="Sprite" type="Sprite2D" parent="StaticBody2D/WritingSign"]
+scale = Vector2(0.235, 0.235)
+texture = ExtResource("7_r4sjr")
+
+[node name="Panel" type="Panel" parent="StaticBody2D/WritingSign/Sprite"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -519.0
+offset_top = -789.0
+offset_right = 190.0
+offset_bottom = -877.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_x5cwn")
+
+[node name="Label" type="Label" parent="StaticBody2D/WritingSign/Sprite/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.00184107, 0.00184107, 0.00184107, 1)
+theme_override_fonts/font = SubResource("SystemFont_qdrwq")
+theme_override_font_sizes/font_size = 90
+text = "Super FUN Bowling Hall
+in the not suspicious hole
+ahead. Trust me!!! :3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/WritingSign"]
+position = Vector2(3, 53)
+shape = SubResource("CircleShape2D_e1hjl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(13, -31)
+shape = SubResource("RectangleShape2D_uqwby")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(422, 229)
+
+[node name="ArrowSign" type="Sprite2D" parent="StaticBody2D2"]
+texture = ExtResource("5_iscxa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(7.5, -14.5)
+shape = SubResource("RectangleShape2D_p2xk8")
 
 [connection signal="body_entered" from="entry_area" to="player" method="_on_entry_area_body_entered"]
+[connection signal="body_entered" from="StaticBody2D/WritingSign" to="." method="_on_writing_sign_body_entered"]
+[connection signal="body_exited" from="StaticBody2D/WritingSign" to="." method="_on_writing_sign_body_exited"]

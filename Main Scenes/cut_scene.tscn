@@ -1,134 +1,379 @@
-[gd_scene load_steps=10 format=3 uid="uid://mfsqheuj2pmh"]
+[gd_scene load_steps=13 format=3 uid="uid://mfsqheuj2pmh"]
 
 [ext_resource type="Script" path="res://Main Scenes/cut_scene.gd" id="1_4x3h2"]
-[ext_resource type="Texture2D" uid="uid://cgs8rrgoag2pe" path="res://other_images/New Piskel/sprite_cut0.png" id="1_ih7ej"]
-[ext_resource type="Texture2D" uid="uid://dht8ncd661sy8" path="res://other_images/New Piskel/sprite_cut1.png" id="2_6hfsl"]
-[ext_resource type="Texture2D" uid="uid://bjucgs5cgaio1" path="res://other_images/New Piskel/sprite_cut2.png" id="3_m3f4f"]
-[ext_resource type="Texture2D" uid="uid://cy4jw2eusgxt0" path="res://other_images/New Piskel/New Piskel-1.png.png" id="4_d3qix"]
+[ext_resource type="Texture2D" uid="uid://houvjryb46jd" path="res://Resources/devil_man.png" id="2_c7bxg"]
+[ext_resource type="AudioStream" uid="uid://b8mph30fn1rc0" path="res://SFX/Retro Electronic Burst 05.wav" id="3_hv3oi"]
+[ext_resource type="AudioStream" uid="uid://fypn187cd8cx" path="res://SFX/thunder-fx.wav" id="4_7e2gy"]
 
-[sub_resource type="Animation" id="Animation_o2opm"]
-length = 6.9
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f2kq2"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_o7tih"]
+font_names = PackedStringArray("Arial Rounded MT")
+
+[sub_resource type="Animation" id="Animation_wifwh"]
+resource_name = "EntryFlash"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:position")
+tracks/0/path = NodePath("ColorRect:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 6.9),
+"times": PackedFloat32Array(0.0333333, 0.133333, 0.233333, 0.333333, 0.433333, 0.533333, 0.633333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.647059, 0.647059, 0), Color(0.412184, 0, 0.0896995, 0.862745), Color(1, 0.647059, 0.647059, 0), Color(0.411765, 0, 0.0901961, 0.862745), Color(1, 0.647059, 0.647059, 0), Color(0.411765, 0, 0.0901961, 0.862745), Color(1, 0.647059, 0.647059, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/SubtitlesPanel/Subtitles:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4, 1.73333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(55, -70), Vector2(59, 341)]
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/SubtitlesPanel/Subtitles:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["[center]YOU FELL FOR MY TRAP!"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EntrySFX:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_et8oo"]
-resource_name = "cut_scene"
-length = 6.9
+[sub_resource type="Animation" id="Animation_h33wf"]
+resource_name = "Progress2"
+length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:position")
+tracks/0/path = NodePath("VBoxContainer/SubtitlesPanel/Subtitles:visible_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 6.53333),
+"times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(100, 62), Vector2(122, 346)]
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/SubtitlesPanel/Subtitles:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["[center]NOW, YOU MUST. . . . . . ."]
 }
 
-[sub_resource type="Animation" id="Animation_gfkte"]
-resource_name = "cut_scene2"
-length = 6.9
+[sub_resource type="Animation" id="Animation_k5gqb"]
+resource_name = "Progress3"
+length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:position")
+tracks/0/path = NodePath("ColorRect:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 6.9),
+"times": PackedFloat32Array(0, 0.266667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-32, -67), Vector2(-25, 340)]
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect/Progress3Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.266667, 1, 1.83333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": ["BOWL", "TO", "DEATH!!"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect/Progress3Label:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.266667, 0.566667, 1, 1.36667, 1.83333, 2.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect/Progress3Label:theme_override_font_sizes/font_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.266667, 0.566667, 1, 1.36667, 1.83333, 2.1),
+"transitions": PackedFloat32Array(1, 1.03526, 1, 1.03526, 1.03526, 1.03526),
+"update": 0,
+"values": [80, 120, 60, 120, 60, 150]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.76667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"go_to_game_area"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EntrySFX:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Progress3SFX:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.86667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ck4hf"]
+[sub_resource type="Animation" id="Animation_e8vw6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/SubtitlesPanel/Subtitles:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/SubtitlesPanel/Subtitles:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect/Progress3Label:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ColorRect/Progress3Label:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ColorRect/Progress3Label:theme_override_font_sizes/font_size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [100]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("EntrySFX:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Progress3SFX:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_22slc"]
 _data = {
-"RESET": SubResource("Animation_o2opm"),
-"cut_scene": SubResource("Animation_et8oo"),
-"cut_scene2": SubResource("Animation_gfkte")
+"Entry": SubResource("Animation_wifwh"),
+"Progress2": SubResource("Animation_h33wf"),
+"Progress3": SubResource("Animation_k5gqb"),
+"RESET": SubResource("Animation_e8vw6")
 }
+
+[sub_resource type="SystemFont" id="SystemFont_ndrlf"]
+font_names = PackedStringArray("Arial Rounded MT")
 
 [node name="cut_scene" type="Node2D"]
 script = ExtResource("1_4x3h2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(55, -70)
-zoom = Vector2(5, 5)
-limit_right = 160
-limit_smoothed = true
-position_smoothing_speed = 10.0
-drag_horizontal_offset = 1.0
-editor_draw_limits = true
+position = Vector2(574, 322)
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 6.9
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1149.0
+offset_bottom = 644.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(45.5, 62)
-scale = Vector2(1.43125, 1)
-texture = ExtResource("1_ih7ej")
+[node name="Panel" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(1149, 574)
+layout_mode = 2
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(47, 199)
-scale = Vector2(1.45, 1)
-texture = ExtResource("2_6hfsl")
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_c7bxg")
 
-[node name="Sprite2D3" type="Sprite2D" parent="."]
-position = Vector2(45, 341)
-scale = Vector2(1.43125, 1.00781)
-texture = ExtResource("3_m3f4f")
+[node name="SubtitlesPanel" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_f2kq2")
 
-[node name="Sprite2D4" type="Sprite2D" parent="."]
-position = Vector2(46, -64)
-scale = Vector2(7.125, 3.34375)
-texture = ExtResource("4_d3qix")
-
-[node name="Label" type="Label" parent="."]
-texture_filter = 1
-offset_left = 75.0
-offset_top = 172.0
-offset_right = 233.0
-offset_bottom = 221.0
-theme_override_font_sizes/font_size = 11
-text = "You fell into
- my trap"
-uppercase = true
-
-[node name="Label3" type="Label" parent="."]
-texture_filter = 1
-offset_left = 188.0
-offset_top = 137.0
-offset_right = 346.0
-offset_bottom = 186.0
-theme_override_font_sizes/font_size = 11
-text = "make it look god pls"
-uppercase = true
-
-[node name="Label2" type="Label" parent="."]
-offset_left = 67.0
-offset_top = 319.0
-offset_right = 157.0
-offset_bottom = 356.0
-theme_override_font_sizes/font_size = 12
-text = "now, where are
- my minions?"
+[node name="Subtitles" type="RichTextLabel" parent="VBoxContainer/SubtitlesPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = SubResource("SystemFont_o7tih")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+visible_characters = 0
+visible_ratio = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_ck4hf")
+"": SubResource("AnimationLibrary_22slc")
 }
-autoplay = "cut_scene2"
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="ColorRect" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -188.0
+offset_top = -110.0
+offset_right = 1321.0
+offset_bottom = 762.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Progress3Label" type="Label" parent="ColorRect"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("SystemFont_ndrlf")
+theme_override_font_sizes/font_size = 100
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EntrySFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_hv3oi")
+volume_db = -7.0
+bus = &"SFX"
+
+[node name="Progress3SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_7e2gy")
+volume_db = 5.0

@@ -1,0 +1,225 @@
+[gd_scene load_steps=19 format=3 uid="uid://de6ptabqk6x6t"]
+
+[ext_resource type="Script" path="res://Main Scenes/menu/main_menu.gd" id="1_xty0p"]
+[ext_resource type="Texture2D" uid="uid://dgeegk2cu4mxw" path="res://Resources/title.png" id="2_dx70b"]
+[ext_resource type="Texture2D" uid="uid://dsg42l851cpnk" path="res://Resources/fire_overlay.png" id="2_o5eyt"]
+[ext_resource type="Shader" path="res://Main Scenes/menu/scroll.gdshader" id="2_vyxub"]
+[ext_resource type="StyleBox" uid="uid://esy5gfotjiq4" path="res://Main Scenes/menu/menu_button_normal.tres" id="5_m8oe4"]
+[ext_resource type="StyleBox" uid="uid://bkvenev8asqbw" path="res://Main Scenes/menu/menu_button_hover.tres" id="6_sgha1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u0f88"]
+shader = ExtResource("2_vyxub")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sfdlw"]
+bg_color = Color(0.188235, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.492886, 0.23925, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_kdpin"]
+font_names = PackedStringArray("Arial Rounded MT")
+
+[sub_resource type="SystemFont" id="SystemFont_7rcse"]
+font_names = PackedStringArray("Arial Rounded MT")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4kr6h"]
+bg_color = Color(0.2, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.494118, 0.239216, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6wxyg"]
+bg_color = Color(0.384647, 3.91062e-07, 1.68458e-07, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.494118, 0.239216, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_wuo7l"]
+font_names = PackedStringArray("Arial Rounded MT")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvx6u"]
+bg_color = Color(0.2, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.494118, 0.239216, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qk3ta"]
+bg_color = Color(0.415686, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.494118, 0.239216, 1)
+
+[sub_resource type="Animation" id="Animation_ufvft"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Title:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bkvw1"]
+resource_name = "title"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Title:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 2.5),
+"transitions": PackedFloat32Array(0.784584, 0.732043),
+"update": 0,
+"values": [0.0698132, -0.0698132]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cgihv"]
+_data = {
+"RESET": SubResource("Animation_ufvft"),
+"title": SubResource("Animation_bkvw1")
+}
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xty0p")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.468327, 1.10099e-06, 1.68458e-07, 1)
+
+[node name="FireOverlay" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_u0f88")
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -222.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_o5eyt")
+
+[node name="TitleBackground" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -541.0
+offset_top = -311.0
+offset_right = 540.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sfdlw")
+
+[node name="Title" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -432.0
+offset_top = -286.0
+offset_right = 435.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(430, 135)
+texture = ExtResource("2_dx70b")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 17.0
+offset_right = 100.0
+offset_bottom = 145.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="StartGame" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(30, 40)
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_kdpin")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = ExtResource("5_m8oe4")
+theme_override_styles/hover_pressed = ExtResource("6_sgha1")
+theme_override_styles/hover = ExtResource("6_sgha1")
+theme_override_styles/pressed = ExtResource("5_m8oe4")
+theme_override_styles/normal = ExtResource("5_m8oe4")
+text = "Start Game"
+
+[node name="Settings" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_7rcse")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxFlat_4kr6h")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_6wxyg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6wxyg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4kr6h")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4kr6h")
+text = "Settings
+"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_wuo7l")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxFlat_dvx6u")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_qk3ta")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qk3ta")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dvx6u")
+theme_override_styles/normal = SubResource("StyleBoxFlat_dvx6u")
+text = "Exit
+"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cgihv")
+}
+autoplay = "title"
+
+[connection signal="pressed" from="VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

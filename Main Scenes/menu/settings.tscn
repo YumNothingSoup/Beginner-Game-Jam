@@ -1,0 +1,158 @@
+[gd_scene load_steps=4 format=3 uid="uid://cp86exqboniuk"]
+
+[ext_resource type="Script" path="res://Main Scenes/settings.gd" id="1_l3b7e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rahy1"]
+bg_color = Color(0.435192, 0.435192, 0.435192, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="SystemFont" id="SystemFont_62s75"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l3b7e")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="TabContainer" type="TabContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_right = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 1
+clip_tabs = false
+drag_to_rearrange_enabled = true
+
+[node name="Options" type="HBoxContainer" parent="Panel/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 500
+metadata/_tab_index = 0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/TabContainer/Options"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/TabContainer/Options/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Music"
+
+[node name="Label2" type="Label" parent="Panel/TabContainer/Options/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SFX"
+
+[node name="Label3" type="Label" parent="Panel/TabContainer/Options/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Skip Intro"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/Options"]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="Control" type="Control" parent="Panel/TabContainer/Options/VBoxContainer"]
+layout_mode = 2
+
+[node name="Music" type="HSlider" parent="Panel/TabContainer/Options/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+max_value = 1.25
+step = 0.05
+
+[node name="SFX" type="HSlider" parent="Panel/TabContainer/Options/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.25
+step = 0.05
+
+[node name="CheckBox" type="CheckBox" parent="Panel/TabContainer/Options/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/focus = SubResource("StyleBoxFlat_rahy1")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_rahy1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rahy1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rahy1")
+theme_override_styles/normal = SubResource("StyleBoxFlat_rahy1")
+icon_alignment = 1
+
+[node name="Controls" type="VBoxContainer" parent="Panel/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Label2" type="Label" parent="Panel/TabContainer/Controls"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Movement (only for the intro)                  |   WASD or Arrow Keys"
+
+[node name="Label" type="Label" parent="Panel/TabContainer/Controls"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Aim                                                                  |   Hold Down Left Mouse"
+
+[node name="Label3" type="Label" parent="Panel/TabContainer/Controls"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Throw Ball                                                      |   Release Left Mouse"
+
+[node name="Label4" type="Label" parent="Panel/TabContainer/Controls"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Cancel Aim                                                     |   Right Mouse"
+
+[node name="Rules!" type="ColorRect" parent="Panel/TabContainer"]
+visible = false
+layout_mode = 2
+color = Color(0.194882, 0.194882, 0.194882, 1)
+metadata/_tab_index = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/TabContainer/Rules!"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = SubResource("SystemFont_62s75")
+theme_override_font_sizes/italics_font_size = 1
+theme_override_font_sizes/normal_font_size = 30
+text = "The aim of the game is to get as many points as possible. This is achieved by knocking down as many pins as possible without the pins reaching you. This is done most efficiently by getting combos which increase your points even more. Good luck and HAVE FUN"
+context_menu_enabled = true
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 593.0
+offset_right = 186.0
+offset_bottom = 638.0
+text = "Back <--"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(580, 322)
+
+[connection signal="tab_clicked" from="Panel/TabContainer" to="." method="_on_tab_container_tab_clicked"]
+[connection signal="value_changed" from="Panel/TabContainer/Options/VBoxContainer/Music" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Panel/TabContainer/Options/VBoxContainer/SFX" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="toggled" from="Panel/TabContainer/Options/VBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
