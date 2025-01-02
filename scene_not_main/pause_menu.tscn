@@ -4,12 +4,15 @@
 
 [sub_resource type="SystemFont" id="SystemFont_8b4rr"]
 font_names = PackedStringArray("Arial Rounded MT")
+subpixel_positioning = 0
 
 [sub_resource type="SystemFont" id="SystemFont_a82qr"]
 font_names = PackedStringArray("Arial Rounded MT")
+subpixel_positioning = 0
 
 [sub_resource type="SystemFont" id="SystemFont_1pb1j"]
 font_names = PackedStringArray("Arial Rounded MT")
+subpixel_positioning = 0
 
 [node name="pause_menu" type="Control"]
 process_mode = 3

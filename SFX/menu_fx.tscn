@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dg13wor42ovq8"]
+
+[ext_resource type="Script" path="res://SFX/menu_fx.gd" id="1_tjr8a"]
+[ext_resource type="AudioStream" uid="uid://d3cksts2iluuc" path="res://SFX/Minimalist1.wav" id="2_oomkh"]
+
+[node name="MenuFx" type="Node"]
+script = ExtResource("1_tjr8a")
+
+[node name="ButtonClick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_oomkh")

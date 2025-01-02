@@ -22,6 +22,7 @@ GlobalData="*res://Global/GlobalData.gd"
 Enums="*res://Global/Enums.gd"
 Leaderboards="*res://addons/quiver_leaderboards/leaderboards.tscn"
 PlayerAccounts="*res://addons/quiver_player_accounts/player_accounts.tscn"
+MenuFx="*res://SFX/menu_fx.tscn"
 
 [debug]
 
