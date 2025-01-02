@@ -39,6 +39,9 @@ var rotation_speed: float = 0
 var has_stopped = true
 var can_throw = true
 
+var is_aiming: bool = false
+var delay_over: bool = false
+
 # Fades speed lines when ball is slow enough
 var is_fast: bool:
 	set(value):
@@ -51,12 +54,17 @@ func _ready() -> void:
 	
 	rotation_speed = base_rotation_speed
 	
+	get_tree().create_timer(0.5).timeout.connect(
+		func():
+			delay_over = true
+	)
+	
 func _process(_delta: float) -> void:
 	# Reset line every frame
 	prediction_line.clear_points()
 	
 	# Start drawing prediction line when aiming
-	if Input.is_action_pressed("left_mouse") and can_throw:
+	if is_aiming:
 		# Line starting point at the origin
 		prediction_line.add_point(Vector2.ZERO)
 		prediction_ray.global_position = prediction_line.global_position
@@ -124,9 +132,16 @@ func _physics_process(delta: float) -> void:
 	if !has_stopped and is_stationary():
 		on_player_turn_end()
 		
-	if Input.is_action_just_released("left_mouse") and can_throw:
+	if Input.is_action_just_pressed("left_mouse") and can_throw and delay_over:
+		is_aiming = true
+		
+	if Input.is_action_just_released("left_mouse") and can_throw and delay_over and is_aiming:
 		# Launch ball at mouse direction
 		launch_ball((get_global_mouse_position() - global_position).normalized(), throw_strength)
+		is_aiming = false
+		
+	if Input.is_action_pressed("right_mouse") and is_aiming:
+		is_aiming = false
 		
 	# Handling movement
 	velocity = ball_direction * speed * delta
