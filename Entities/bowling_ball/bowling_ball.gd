@@ -223,6 +223,8 @@ func is_stationary() -> bool:
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area is Pin:
 		area.touchBall()
+	if area is Doll_Enemy:
+		area.Doll_touch()
 		
 # Specifically for shielded enemy. Kinda jank but oh well
 func _on_hurtbox_body_entered(body: Node2D) -> void:
