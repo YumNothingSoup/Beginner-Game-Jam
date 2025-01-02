@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cp86exqboniuk"]
+[gd_scene load_steps=3 format=3 uid="uid://cp86exqboniuk"]
 
 [ext_resource type="Script" path="res://Main Scenes/settings.gd" id="1_l3b7e"]
-[ext_resource type="PackedScene" uid="uid://dwobe8d1bkhd2" path="res://SFX/click_sfx.tscn" id="2_i0ejg"]
 
 [sub_resource type="SystemFont" id="SystemFont_62s75"]
 
@@ -123,8 +122,6 @@ text = "Back <--"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(580, 322)
-
-[node name="ClickSFX" parent="." instance=ExtResource("2_i0ejg")]
 
 [connection signal="tab_clicked" from="Panel/TabContainer" to="." method="_on_tab_container_tab_clicked"]
 [connection signal="value_changed" from="Panel/TabContainer/Audio/VBoxContainer/Music" to="." method="_on_music_slider_value_changed"]
