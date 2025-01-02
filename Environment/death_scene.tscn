@@ -49,34 +49,51 @@ texture = ExtResource("2_48bwy")
 offset_right = 606.0
 offset_bottom = 650.0
 
-[node name="TextureButton" type="TextureButton" parent="Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -67.0
-offset_top = 78.0
-offset_right = 29.0
-offset_bottom = 142.0
+offset_left = -183.5
+offset_top = 105.0
+offset_right = 186.5
+offset_bottom = 166.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.5, 1.5)
+theme_override_constants/separation = 70
 
-[node name="RESTART" type="Label" parent="Panel/TextureButton"]
+[node name="TextureButton" type="TextureButton" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+
+[node name="RESTART" type="Label" parent="Panel/HBoxContainer/TextureButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -7.33335
-offset_top = 2.66668
-offset_right = 12.6666
-offset_bottom = -14.3333
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_wjeym")
 text = "RESTART"
+label_settings = SubResource("LabelSettings_w1uel")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitToMenu" type="TextureButton" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/QuitToMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_wjeym")
+text = "QUIT TO MENU"
 label_settings = SubResource("LabelSettings_w1uel")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -134,7 +151,6 @@ layout_mode = 1
 offset_left = 1.0
 offset_top = 4.0
 offset_bottom = -66.0
-leaderboard_id = "indie-game-dev-winte-normal-difficul-EZQl"
 current_player_highlight_color = Color(0.109804, 0.286275, 0.443137, 1)
 
 [node name="LineEdit" type="LineEdit" parent="LeaderboardPanel"]
@@ -150,5 +166,6 @@ grow_vertical = 2
 placeholder_text = "Enter a name to submit your score to the leaderboard"
 clear_button_enabled = true
 
-[connection signal="pressed" from="Panel/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/QuitToMenu" to="." method="_on_quit_to_menu_pressed"]
 [connection signal="text_submitted" from="LeaderboardPanel/LineEdit" to="." method="_on_line_edit_text_submitted"]
