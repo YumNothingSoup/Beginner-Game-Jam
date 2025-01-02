@@ -22,7 +22,7 @@ func _on_resume_pressed():
 func _on_restart_pressed() -> void:
 	MenuFx.button_click()
 	Resume()
-	get_tree().change_scene_to_file("res://Main Scenes/game_area.tscn")
+	get_tree().reload_current_scene()
 
 func _on_quit_pressed() -> void:
 	MenuFx.button_click()

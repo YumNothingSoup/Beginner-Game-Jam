@@ -12,19 +12,19 @@ var combos: Dictionary = {
 		},
 	
 	"Combo2": {
-		"Text": "Good!",
+		"Text": "Alright",
 		"Multiplier": 2,
 		"Kills to Activate": 3
 		},
 		
 	"Combo3": {
-		"Text": "Great!",
+		"Text": "Impressive",
 		"Multiplier": 3,
 		"Kills to Activate": 6
 		},
 		
 	"Combo4": {
-		"Text": "DELIVERY!",
+		"Text": "DAMN!",
 		"Multiplier": 4,
 		"Kills to Activate": 10
 		}

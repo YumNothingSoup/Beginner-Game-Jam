@@ -49,7 +49,7 @@ func assign_spawn_parameters():
 			enemy_count_incrementation_value = 2
 		Enums.DIFFICULTY.HARD:
 			start_enemy_count += 3
-			enemy_count_incrementation_value = 3
+			enemy_count_incrementation_value = 2
 			enemy_increment_turn_interval = 2
 			enemy_spawn_turn_interval = 1
 
