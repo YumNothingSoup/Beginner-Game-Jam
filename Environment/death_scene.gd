@@ -26,6 +26,7 @@ func _ready() -> void:
 	leaderboard_ui.refresh_scores()
 
 func _on_texture_button_pressed() -> void:
+	MenuFx.button_click()
 	get_tree().change_scene_to_file("res://Main Scenes/game_area.tscn")
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
@@ -36,4 +37,5 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 	get_tree().reload_current_scene()
 
 func _on_quit_to_menu_pressed() -> void:
+	MenuFx.button_click()
 	get_tree().change_scene_to_file("res://Main Scenes/menu/main_menu.tscn")

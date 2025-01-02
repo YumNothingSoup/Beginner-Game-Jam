@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name BowlingBall
 
+signal ball_thrown
+
 # When speed reaches the threshold or lower, the player's turn ends
 @export var velocity_threshold: float = 5
 # Starting speed when thrown
@@ -28,6 +30,7 @@ class_name BowlingBall
 @onready var prediction_line: Line2D = %PredictionLine
 
 @onready var bounce_sfx: AudioStreamPlayer2D = $BounceSFX
+@onready var roll_sfx: AudioStreamPlayer2D = $RollSFX
 
 @export var max_prediction_distance: float = 600
 
@@ -180,9 +183,12 @@ func handle_speed_lines():
 	if is_fast:
 		speed_lines.self_modulate = Color(1, 1, 1, 0.6)
 		roll_particles.emitting = true
+		roll_sfx.volume_db = linear_to_db(0.9)
+		roll_sfx.play()
 	else:
-		speed_tween = create_tween()
+		speed_tween = create_tween().set_parallel()
 		speed_tween.tween_property(speed_lines, "self_modulate", Color(1, 1, 1, 0), 0.65)
+		speed_tween.tween_property(roll_sfx, "volume_db", linear_to_db(0.05), 1)
 		get_tree().create_timer(0.5).timeout.connect(
 			func():
 				roll_particles.emitting = false
@@ -217,6 +223,7 @@ func launch_ball(direction: Vector2, force: float):
 	ball_direction = direction
 	speed = force
 	rotation_speed = base_rotation_speed
+	ball_thrown.emit()
 
 func is_stationary() -> bool:
 	# Check if speed is lower than the threshold
