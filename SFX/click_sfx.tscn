@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwobe8d1bkhd2"]
+
+[ext_resource type="AudioStream" uid="uid://d3cksts2iluuc" path="res://SFX/Minimalist1.wav" id="1_v15wn"]
+
+[node name="ClickSFX" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_v15wn")

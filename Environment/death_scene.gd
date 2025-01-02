@@ -35,6 +35,5 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 	GlobalData.has_submitted = true
 	get_tree().reload_current_scene()
 
-
 func _on_quit_to_menu_pressed() -> void:
 	get_tree().change_scene_to_file("res://Main Scenes/menu/main_menu.tscn")

@@ -1,12 +1,14 @@
-[gd_scene load_steps=19 format=4 uid="uid://cfmsj4pi1erq6"]
+[gd_scene load_steps=21 format=4 uid="uid://cfmsj4pi1erq6"]
 
 [ext_resource type="Script" path="res://Main Scenes/game_area.gd" id="1_7aw1g"]
 [ext_resource type="PackedScene" uid="uid://df2118ff0ei5x" path="res://System Managers/turn_manager.tscn" id="1_p1l5c"]
 [ext_resource type="PackedScene" uid="uid://cma6uxfsl047t" path="res://System Managers/score_manager.tscn" id="1_ruth1"]
 [ext_resource type="PackedScene" uid="uid://dvu67lgff14pj" path="res://Entities/player/player.tscn" id="2_4x8qw"]
+[ext_resource type="Script" path="res://System Managers/audio_manager.gd" id="2_h33ec"]
 [ext_resource type="PackedScene" uid="uid://cbf5d1fnt08pi" path="res://scene_not_main/pause_menu.tscn" id="3_bdykk"]
 [ext_resource type="PackedScene" uid="uid://bwvl3fycobgck" path="res://Entities/bowling_ball/bowling_ball.tscn" id="4_75x6v"]
 [ext_resource type="Texture2D" uid="uid://cpfd7nprdbuc7" path="res://Resources/bowling_placeholder_background.png" id="4_86y6x"]
+[ext_resource type="AudioStream" uid="uid://6a260y3hdfck" path="res://SFX/Retro PickUp Coin 07.wav" id="4_ayru4"]
 [ext_resource type="Script" path="res://Main Scenes/enemy_spawn_area.gd" id="4_p6rth"]
 [ext_resource type="PackedScene" uid="uid://n2rm3356m4q5" path="res://UI/turn_label.tscn" id="5_mb6fo"]
 [ext_resource type="Texture2D" uid="uid://cs7fmlbvqcs2q" path="res://Environment/tiles-sprite-sheet.png" id="5_o3bgv"]
@@ -920,7 +922,19 @@ subpixel_positioning = 0
 [node name="Main" type="Node2D"]
 script = ExtResource("1_7aw1g")
 
+[node name="AudioManager" type="Node2D" parent="." groups=["audio_manager"]]
+script = ExtResource("2_h33ec")
+
+[node name="AudioDelay" type="Timer" parent="AudioManager"]
+wait_time = 0.15
+autostart = true
+
 [node name="ScoreManager" parent="." instance=ExtResource("1_ruth1")]
+
+[node name="ComboSFX" type="AudioStreamPlayer2D" parent="ScoreManager"]
+stream = ExtResource("4_ayru4")
+volume_db = -8.0
+bus = &"SFX"
 
 [node name="TurnManager" parent="." instance=ExtResource("1_p1l5c")]
 
@@ -1094,4 +1108,5 @@ theme_override_font_sizes/font_size = 30
 text = "PLAYER"
 horizontal_alignment = 1
 
+[connection signal="timeout" from="AudioManager/AudioDelay" to="AudioManager" method="_on_audio_delay_timeout"]
 [connection signal="ball_stopped" from="BowlingBall" to="TurnManager" method="_on_bowling_ball_ball_stopped"]
