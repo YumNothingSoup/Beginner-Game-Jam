@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://bnhmd4i7ebnn6"]
+[gd_scene load_steps=17 format=3 uid="uid://bnhmd4i7ebnn6"]
 
 [ext_resource type="Script" path="res://Entities/enemies/enemy.gd" id="1_7xn3k"]
 [ext_resource type="Texture2D" uid="uid://c0h41xvmyx2l8" path="res://Resources/pin-morphed-sprite-sheet.png" id="2_fik2w"]
 [ext_resource type="Texture2D" uid="uid://bx1x6rjw1xoxd" path="res://Resources/pin-standard-sprite-sheet.png" id="3_uul5b"]
+[ext_resource type="AudioStream" uid="uid://bis3vahdvhxv7" path="res://SFX/coin_low.wav" id="4_nve3x"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wt7mw"]
 radius = 27.0
@@ -70,6 +71,90 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="Animation" id="Animation_g0uh5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enemyAnimatedGraphic:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("enemyAnimatedGraphic:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("enemyAnimatedGraphic:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_m8kd2"]
+resource_name = "death_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enemyAnimatedGraphic:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(3, 0), Vector2(3, -60), Vector2(3, 100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("enemyAnimatedGraphic:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.366667, 0.866667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.670588), Color(1, 1, 1, 0.670588), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("enemyAnimatedGraphic:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.866667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gfb4m"]
+_data = {
+"RESET": SubResource("Animation_g0uh5"),
+"death_anim": SubResource("Animation_m8kd2")
+}
+
 [node name="enemy" type="Area2D"]
 collision_layer = 8
 collision_mask = 20
@@ -89,3 +174,12 @@ sprite_frames = SubResource("SpriteFrames_k7aoo")
 animation = &"standard"
 autoplay = "standard"
 frame_progress = 0.576189
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_nve3x")
+bus = &"SFX"
+
+[node name="DeathAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gfb4m")
+}

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cp86exqboniuk"]
+[gd_scene load_steps=4 format=3 uid="uid://cp86exqboniuk"]
 
 [ext_resource type="Script" path="res://Main Scenes/settings.gd" id="1_l3b7e"]
+[ext_resource type="PackedScene" uid="uid://dwobe8d1bkhd2" path="res://SFX/click_sfx.tscn" id="2_i0ejg"]
 
 [sub_resource type="SystemFont" id="SystemFont_62s75"]
 
@@ -60,10 +61,14 @@ theme_override_constants/separation = 50
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+max_value = 1.0
+step = 0.05
 
 [node name="SFX" type="HSlider" parent="Panel/TabContainer/Audio/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+max_value = 1.25
+step = 0.05
 
 [node name="Cotrols" type="VBoxContainer" parent="Panel/TabContainer"]
 visible = false
@@ -119,6 +124,9 @@ text = "Back <--"
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(580, 322)
 
+[node name="ClickSFX" parent="." instance=ExtResource("2_i0ejg")]
+
+[connection signal="tab_clicked" from="Panel/TabContainer" to="." method="_on_tab_container_tab_clicked"]
 [connection signal="value_changed" from="Panel/TabContainer/Audio/VBoxContainer/Music" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="Panel/TabContainer/Audio/VBoxContainer/SFX" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
