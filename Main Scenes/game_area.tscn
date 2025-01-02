@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://cfmsj4pi1erq6"]
+[gd_scene load_steps=23 format=4 uid="uid://cfmsj4pi1erq6"]
 
 [ext_resource type="Script" path="res://Main Scenes/game_area.gd" id="1_7aw1g"]
 [ext_resource type="PackedScene" uid="uid://df2118ff0ei5x" path="res://System Managers/turn_manager.tscn" id="1_p1l5c"]
@@ -12,8 +12,12 @@
 [ext_resource type="Script" path="res://Main Scenes/enemy_spawn_area.gd" id="4_p6rth"]
 [ext_resource type="PackedScene" uid="uid://n2rm3356m4q5" path="res://UI/turn_label.tscn" id="5_mb6fo"]
 [ext_resource type="Texture2D" uid="uid://cs7fmlbvqcs2q" path="res://Environment/tiles-sprite-sheet.png" id="5_o3bgv"]
+[ext_resource type="Shader" path="res://Main Scenes/menu/game_area_scroll.gdshader" id="6_dcajk"]
 [ext_resource type="Resource" uid="uid://bflfpw615m61f" path="res://Entities/enemies/special_enemy_pool.tres" id="7_8x8o2"]
 [ext_resource type="Script" path="res://UI/score_label.gd" id="10_p03li"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_icgko"]
+shader = ExtResource("6_dcajk")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7c3a4"]
 texture = ExtResource("5_o3bgv")
@@ -941,6 +945,8 @@ bus = &"SFX"
 [node name="EnemyContainer" type="Node" parent="." groups=["enemy_container"]]
 
 [node name="TextureRect" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_icgko")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -971,6 +977,7 @@ special_enemy_pool = ExtResource("7_8x8o2")
 enemy_spawn_area = NodePath("CollisionShape2D")
 player_preventation_area = NodePath("../PlayerPreventationArea")
 enemy_container = NodePath("../EnemyContainer")
+start_enemy_count = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySpawnArea"]
 position = Vector2(582, 338)
@@ -979,20 +986,20 @@ shape = SubResource("RectangleShape2D_6oni3")
 [node name="PlayerPreventationArea" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerPreventationArea"]
-position = Vector2(-24, -16)
+position = Vector2(-20, -16)
 scale = Vector2(1.1125, 1.0375)
 polygon = PackedVector2Array(251.685, 354.699, 345.169, 547.47, 517.753, 647.711, 711.91, 539.759, 812.584, 354.699, 719.101, 161.928, 532.135, 84.8193, 352.36, 154.217)
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_4x8qw")]
 unique_name_in_owner = true
 z_index = 1
-position = Vector2(564, 343)
+position = Vector2(582, 360)
 rotation = -0.00532027
 
 [node name="BowlingBall" parent="." instance=ExtResource("4_75x6v")]
 unique_name_in_owner = true
 visibility_layer = 4
-position = Vector2(561, 363)
+position = Vector2(573, 363)
 velocity_threshold = 10.0
 throw_strength = 1000.0
 speed_loss_over_time = 190.0

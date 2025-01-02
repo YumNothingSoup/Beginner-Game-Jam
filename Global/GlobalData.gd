@@ -12,6 +12,8 @@ var selected_difficulty: Enums.DIFFICULTY
 # So people don't submit their scores multiple times
 var has_submitted: bool = false
 
+var skip_cutscene: bool = false
+
 func _ready() -> void:
 	Events.game_start.connect(on_game_start)
 	

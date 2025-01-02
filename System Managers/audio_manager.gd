@@ -2,7 +2,7 @@ extends Node2D
 
 var audio_queue: Array = []
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if audio_queue.size() > 5:
 		audio_queue.pop_back()
 

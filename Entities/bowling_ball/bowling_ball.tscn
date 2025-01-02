@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://bwvl3fycobgck"]
+[gd_scene load_steps=22 format=3 uid="uid://bwvl3fycobgck"]
 
 [ext_resource type="Script" path="res://Entities/bowling_ball/bowling_ball.gd" id="1_2faiv"]
 [ext_resource type="Texture2D" uid="uid://t6sx7fcn723" path="res://Resources/ball-static.png" id="2_vxk5n"]
 [ext_resource type="Texture2D" uid="uid://b6ayn7gbihst0" path="res://Resources/ball-speed-lines-sprite-sheet.png" id="3_bi8di"]
 [ext_resource type="AudioStream" uid="uid://dcs7lltrle7oy" path="res://SFX/wall_bounce.wav" id="4_cumvb"]
+[ext_resource type="AudioStream" uid="uid://wdqhj3lsajhv" path="res://SFX/260778__squirmtheverm__rolling-ball-loop.wav" id="5_qf52v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kk63w"]
 atlas = ExtResource("3_bi8di")
@@ -155,6 +156,11 @@ width = 8.0
 
 [node name="BounceSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_cumvb")
+bus = &"SFX"
+
+[node name="RollSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_qf52v")
+pitch_scale = 1.1
 bus = &"SFX"
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
