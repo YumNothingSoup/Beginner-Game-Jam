@@ -13,11 +13,15 @@ var playerPosition:Vector2
 # Whether it is the enemy's turn or not is given by...
 var isTurn = false
 
+@onready var sfx: AudioStreamPlayer2D = $SFX
+@onready var death_anim: AnimationPlayer = $DeathAnim
+
 # Enemy movement speed, made it an export variable for better testing
 @export var velocity: float = 100
 
 # Score given when knocked down
 @export var value: int = 1
+
 
 func _ready() -> void:
 	Events.enemy_turn_started.connect(on_enemy_turn_start)
@@ -71,4 +75,15 @@ func touchBall():
 	if score_manager != null:
 		score_manager.gain_score(value, global_position)
 	
+	collision_layer = 0
+	collision_mask = 0
+	death_animation()
+	
+func death_animation():
+	sfx.pitch_scale = randf_range(0.9, 1)
+	
+	get_tree().get_first_node_in_group("audio_manager").add_audio(sfx)
+	
+	death_anim.play("death_anim")
+	await death_anim.animation_finished
 	self.queue_free()

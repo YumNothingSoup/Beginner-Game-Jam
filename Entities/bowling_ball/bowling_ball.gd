@@ -27,6 +27,8 @@ class_name BowlingBall
 @onready var prediction_ray: RayCast2D = %PredictionRayCast
 @onready var prediction_line: Line2D = %PredictionLine
 
+@onready var bounce_sfx: AudioStreamPlayer2D = $BounceSFX
+
 @export var max_prediction_distance: float = 600
 
 # Keep it low to prevent an infinite loop
@@ -152,6 +154,7 @@ func _physics_process(delta: float) -> void:
 		ball_direction = velocity.bounce(collision.get_normal()).normalized()
 		collision_particles.restart()
 		collision_particles.emitting = true
+		bounce_sfx.play()
 	
 	# Rotation
 	sprite_2d.rotation_degrees += rotation_speed

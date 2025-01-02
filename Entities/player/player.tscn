@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://dvu67lgff14pj"]
+[gd_scene load_steps=19 format=3 uid="uid://dvu67lgff14pj"]
 
 [ext_resource type="Texture2D" uid="uid://gmfl80oovw3d" path="res://Entities/player/animations/Prototype_Character.png" id="1_4w1qw"]
 [ext_resource type="Script" path="res://Entities/player/player.gd" id="1_ydwdm"]
+[ext_resource type="AudioStream" uid="uid://iyponsu23n3m" path="res://SFX/Retro Negative Short 23.wav" id="3_3le5r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sutav"]
 atlas = ExtResource("1_4w1qw")
@@ -170,6 +171,10 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_7qstm")
+
+[node name="DeathSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_3le5r")
+bus = &"SFX"
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

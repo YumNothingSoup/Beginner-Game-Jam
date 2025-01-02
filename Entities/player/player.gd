@@ -3,6 +3,7 @@ class_name Player
 
 @onready var animate: AnimatedSprite2D = $AnimatedSprite2D
 @onready var transition_animation: Node2D = $transition
+@onready var death_sfx: AudioStreamPlayer2D = $DeathSFX
 
 var is_dead: bool = false
 
@@ -27,6 +28,7 @@ func _physics_process(_delta):
 #death func
 func Death():
 	is_dead = true
+	death_sfx.play()
 	Engine.time_scale = 0.5
 	animate.play("death")
 	Events.player_died.emit()

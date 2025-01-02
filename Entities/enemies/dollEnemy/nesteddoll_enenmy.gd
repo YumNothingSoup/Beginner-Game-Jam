@@ -2,6 +2,9 @@
 class_name Doll_Enemy
 extends Area2D
 
+@onready var sfx: AudioStreamPlayer2D = $SFX
+@onready var death_anim: AnimationPlayer = $DeathAnim
+
 
 var Lives:int=3
 
@@ -73,6 +76,8 @@ func Doll_touch():
 	var score_manager = get_tree().get_first_node_in_group("score_manager")
 	if score_manager != null:
 		score_manager.gain_score(value, global_position)
+	sfx.pitch_scale = randf_range(0.9, 1)
+	get_tree().get_first_node_in_group("audio_manager").add_audio(sfx)
 	Lives -=1
 	Smaller()
 	
@@ -84,4 +89,11 @@ func Smaller():
 		velocity = 80
 		$AnimationPlayer.play("small_2")
 	if Lives == 0:
-		self.queue_free()
+		collision_layer = 0
+		collision_mask = 0
+		death_animation()
+	
+func death_animation():
+	death_anim.play("death_anim")
+	await death_anim.animation_finished
+	self.queue_free()

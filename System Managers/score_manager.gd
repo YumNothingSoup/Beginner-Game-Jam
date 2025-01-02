@@ -1,6 +1,7 @@
 extends Node
 
 const SCORE_POPUP = preload("res://UI/score_popup.tscn")
+@onready var combo_sfx: AudioStreamPlayer2D = $ComboSFX
 
 # The combos you can get
 var combos: Dictionary = {
@@ -79,3 +80,6 @@ func handle_combos(pos: Vector2 = Vector2.ZERO):
 		popup.global_position = pos + Vector2(0, -15)
 		get_tree().root.add_child(popup)
 		popup.popup("Combo")
+		
+		combo_sfx.pitch_scale = randf_range(0.8, 0.9)
+		get_tree().get_first_node_in_group("audio_manager").add_audio(combo_sfx)
